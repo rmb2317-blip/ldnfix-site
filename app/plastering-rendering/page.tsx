@@ -34,6 +34,29 @@ export const metadata: Metadata = {
   },
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "Do I need a full skim or can you just patch the damage?",
+    answer:
+      "It depends how bad the existing surface is. If only a small area has blown or cracked, a patch repair and blend may be fine. If the whole wall or ceiling is rough, cracked or has lots of old repairs, a full skim is usually the better long-term option. I’ll always advise honestly on what makes sense.",
+  },
+  {
+    question: "Can you make good after leaks and insurance works?",
+    answer:
+      "Yes. A lot of plastering I do is making good after roof leaks, bathroom leaks or plumbing issues. I’ll strip back any loose or damaged material, let things dry where needed and then rebuild the surface so it’s ready for painting.",
+  },
+  {
+    question: "How messy is plastering and will you protect the property?",
+    answer:
+      "Plastering is dusty by nature, but floors, surfaces and access routes are always protected and the site is left tidy. I’ve spent years working in lived-in homes – I know people still have to walk through the space at the end of the day.",
+  },
+  {
+    question: "How long before I can paint newly plastered walls or ceilings?",
+    answer:
+      "Typically you’re looking at around 5–7 days for a standard skim to dry, depending on thickness, ventilation and weather. I’ll tell you what to look for so you know when it’s ready, and how to mist-coat it so the paint bonds properly.",
+  },
+];
+
 export default function PlasteringRenderingPage() {
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -54,12 +77,27 @@ export default function PlasteringRenderingPage() {
       "Ceiling and wall repairs, skimming, patching and rendering across North & East London, carried out or managed by an experienced multi-trade builder.",
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([serviceSchema, faqSchema]),
+        }}
       />
 
       <div className="border-b border-surfaceMuted/60 bg-background">
@@ -95,12 +133,12 @@ export default function PlasteringRenderingPage() {
             </p>
           </header>
 
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-            {/* Left – detail */}
-            <section className="space-y-5 text-sm text-textMuted">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
+            {/* Left – detail + FAQ */}
+            <section className="space-y-6 text-sm text-textMuted">
               <div>
                 <h2 className="mb-2 text-sm font-semibold text-textPrimary">
-                  Typical plastering & rendering jobs we take on
+                  Typical plastering & rendering jobs I take on
                 </h2>
                 <ul className="list-disc space-y-1 pl-5">
                   <li>Making good ceilings and walls after leaks or rewires.</li>
@@ -124,15 +162,15 @@ export default function PlasteringRenderingPage() {
                 <ul className="list-disc space-y-1 pl-5">
                   <li>
                     Jobs are scoped by someone who understands structure,
-                    moisture and finishes – not just &quot;throwing on&quot; plaster.
+                    moisture and finishes – not just “throwing on” plaster.
                   </li>
                   <li>
-                    We look at the cause of cracks and blown areas, not just the
-                    symptoms.
+                    I look at the cause of cracks and blown areas, not just the
+                    symptoms, so the same issue doesn’t come straight back.
                   </li>
                   <li>
                     Where other trades are involved (roofers, plumbers,
-                    electricians) everything is managed so the finish isn&apos;t
+                    electricians) everything is coordinated so the finish isn’t
                     ruined.
                   </li>
                   <li>
@@ -140,6 +178,31 @@ export default function PlasteringRenderingPage() {
                     quickly between tenants.
                   </li>
                 </ul>
+              </div>
+
+              {/* FAQ section */}
+              <div>
+                <h2 className="mb-2 text-sm font-semibold text-textPrimary">
+                  Plastering & rendering – common questions
+                </h2>
+                <div className="divide-y divide-surfaceMuted rounded-2xl border border-surfaceMuted bg-surface">
+                  {FAQ_ITEMS.map((item) => (
+                    <details
+                      key={item.question}
+                      className="group px-4 py-3 text-xs sm:text-sm"
+                    >
+                      <summary className="flex cursor-pointer list-none items-center justify-between gap-2 text-left text-textPrimary">
+                        <span className="font-medium">{item.question}</span>
+                        <span className="text-[11px] text-textMuted transition group-open:rotate-90">
+                          →
+                        </span>
+                      </summary>
+                      <p className="mt-2 text-xs text-textMuted">
+                        {item.answer}
+                      </p>
+                    </details>
+                  ))}
+                </div>
               </div>
 
               <div>
@@ -161,7 +224,7 @@ export default function PlasteringRenderingPage() {
                   Need walls or ceilings made good?
                 </h2>
                 <p className="mb-4 text-xs text-textMuted">
-                  Send photos of the damage and any wider room shots, and we’ll
+                  Send photos of the damage and any wider room shots, and I’ll
                   come back with a practical plan – from patching to full
                   skims.
                 </p>

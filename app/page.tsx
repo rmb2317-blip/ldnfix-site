@@ -1,5 +1,5 @@
 // app/page.tsx
-
+import ExitIntentModal from "@/components/ExitIntentModal";
 import HeroSection from "@/components/HeroSection";
 import WhyChooseLDNFIX from "@/components/WhyChooseLDNFIX";
 import CoreConstructionServices from "@/components/CoreConstructionServices";
@@ -26,8 +26,12 @@ export default function HomePage() {
       </main>
 
       <Footer />
+
       {/* Sticky WhatsApp bar at the very bottom */}
       <FloatingWhatsApp />
+
+      {/* Desktop-only exit-intent modal */}
+      <ExitIntentModal />
     </>
   );
 }

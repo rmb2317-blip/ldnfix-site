@@ -34,6 +34,29 @@ export const metadata: Metadata = {
   },
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "Do I always need a full new roof if I have a leak?",
+    answer:
+      "Not always. A lot of leaks come from very specific issues – like failed flashings, cracked tiles, blocked gutters or badly finished junctions. I start by finding the actual source, then advise if a targeted repair is sensible or if the roof is genuinely at the end of its life.",
+  },
+  {
+    question: "Can you just make it safe first and fix it properly later?",
+    answer:
+      "Yes. If water is coming in heavily, the first priority is to make things safe and stop further damage. That could be temporary coverings, redirecting water or emergency gutter clearances. Once it’s stabilised, we can agree a proper permanent repair.",
+  },
+  {
+    question: "How do quotes work for roofing and guttering jobs?",
+    answer:
+      "For many smaller jobs, clear photos and a postcode are enough for an initial estimate. For bigger or more complex issues, I’ll visit, assess the roof and any internal damage, then send a written quote that’s easy to understand – no vague one-liners.",
+  },
+  {
+    question: "Do you work directly with landlords and managing agents?",
+    answer:
+      "Yes. I regularly work for landlords, small portfolios and local agents. I can liaise with tenants for access, provide before-and-after photos and keep you updated so you’re not chasing for answers.",
+  },
+];
+
 export default function RoofingGutteringPage() {
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -54,12 +77,27 @@ export default function RoofingGutteringPage() {
       "Leak tracing, temporary make-safes, tile and slate replacement, flat roof works and guttering repairs across London.",
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([serviceSchema, faqSchema]),
+        }}
       />
 
       <div className="border-b border-surfaceMuted/60 bg-background">
@@ -96,12 +134,12 @@ export default function RoofingGutteringPage() {
             </p>
           </header>
 
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-            {/* Left – detail */}
-            <section className="space-y-5 text-sm text-textMuted">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
+            {/* Left – detail + FAQ */}
+            <section className="space-y-6 text-sm text-textMuted">
               <div>
                 <h2 className="mb-2 text-sm font-semibold text-textPrimary">
-                  Typical roofing & guttering jobs we take on
+                  Typical roofing & guttering jobs I take on
                 </h2>
                 <ul className="list-disc space-y-1 pl-5">
                   <li>Leak tracing around chimneys, valleys and flashings.</li>
@@ -138,10 +176,35 @@ export default function RoofingGutteringPage() {
                     LDNFIX management and quality control.
                   </li>
                   <li>
-                    One point of contact for access, timing and follow-up –
-                    ideal for landlords, agents and busy homeowners.
+                    One point of contact for access, timing and follow-up – ideal
+                    for landlords, agents and busy homeowners.
                   </li>
                 </ul>
+              </div>
+
+              {/* FAQ section */}
+              <div>
+                <h2 className="mb-2 text-sm font-semibold text-textPrimary">
+                  Roofing & guttering – common questions
+                </h2>
+                <div className="divide-y divide-surfaceMuted rounded-2xl border border-surfaceMuted bg-surface">
+                  {FAQ_ITEMS.map((item) => (
+                    <details
+                      key={item.question}
+                      className="group px-4 py-3 text-xs sm:text-sm"
+                    >
+                      <summary className="flex cursor-pointer list-none items-center justify-between gap-2 text-left text-textPrimary">
+                        <span className="font-medium">{item.question}</span>
+                        <span className="text-[11px] text-textMuted transition group-open:rotate-90">
+                          →
+                        </span>
+                      </summary>
+                      <p className="mt-2 text-xs text-textMuted">
+                        {item.answer}
+                      </p>
+                    </details>
+                  ))}
+                </div>
               </div>
 
               <div>
@@ -163,7 +226,7 @@ export default function RoofingGutteringPage() {
                   Got a leak or roof issue now?
                 </h2>
                 <p className="mb-4 text-xs text-textMuted">
-                  Send photos of the problem and any previous repairs, and we’ll
+                  Send photos of the problem and any previous repairs, and I’ll
                   come back with a straight-talking plan and price.
                 </p>
 
