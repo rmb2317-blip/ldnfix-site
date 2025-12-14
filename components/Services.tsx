@@ -1,96 +1,144 @@
+// components/Services.tsx
+import Link from "next/link";
+
 const services = [
   {
-    title: "Plastering & making good",
+    id: "roofing",
+    title: "Roofing & guttering",
+    badge: "Leaks, tiles, flat roofs",
+    href: "/roofing-guttering", // full landing page
     description:
-      "Smooth, paint-ready finishes for walls and ceilings. From minor patches and water-damage repairs to full re-skims after rewires or remodelling.",
-    bullets: [
-      "Dot and dab, bonding and skimming",
-      "Ceiling repairs after leaks",
-      "Crack repairs and making good",
-      "New partitions and boarding"
-    ]
+      "Leak tracing, tile replacement, flat roofs and guttering – handled as part of the whole property, not just a quick patch.",
   },
   {
-    title: "Roofing repairs & leaks",
+    id: "plastering",
+    title: "Plastering & rendering",
+    badge: "Walls, ceilings, exteriors",
+    href: "/plastering-rendering", // full landing page
     description:
-      "Targeted, long-lasting roofing repairs that stop leaks properly instead of masking them. Clear photos before and after every job.",
-    bullets: [
-      "Slate, tile and flat roof repairs",
-      "Lead flashings and chimney work",
-      "Gutter, fascia and soffit repairs",
-      "Emergency make-safe visits"
-    ]
+      "From small repairs to full skims and external rendering. Ideal for tidying up after leaks, refurbs or previous bad work.",
   },
   {
+    id: "brickwork",
+    title: "Brickwork & structural repairs",
+    badge: "Walls, piers, lintels",
+    href: "/brickwork-structural", // full landing page
+    description:
+      "Brickwork repairs, repointing, garden walls and minor structural issues – handled with an eye on the whole building.",
+  },
+  {
+    id: "repairs",
     title: "Repairs & maintenance",
+    badge: "General fix work",
+    href: "/repairs-maintenance", // full landing page
     description:
-      "Reactive and planned maintenance for landlords, agents and facilities teams. One call to handle the small jobs that never quite get done.",
-    bullets: [
-      "Doors, locks, handles and hardware",
-      "Sealant, mastic and silicone renewals",
-      "Kitchen and bathroom minor repairs",
-      "Snagging lists after refurb projects"
-    ]
+      "Day-to-day repairs that keep properties safe and presentable – ideal for landlords, agents and busy homeowners.",
   },
   {
-    title: "Handyman & small works",
+    id: "refurbs",
+    title: "Refurbishments & makeovers",
+    badge: "Rooms, flats, houses",
+    href: "/refurbishments", // full landing page
     description:
-      "Perfect for busy households and property managers. Book a half or full day and we’ll work through your to-do list efficiently.",
-    bullets: [
-      "Shelves, curtain rails, TV mounting",
-      "Furniture assembly and adjustments",
-      "Minor carpentry and fixing trip hazards",
-      "End-of-tenancy repairs"
-    ]
-  }
+      "Room refits, cosmetic refreshes and light refurbs, managed end-to-end with one point of contact.",
+  },
+  {
+    id: "other",
+    title: "Can’t see your exact job?",
+    badge: "Multi-trade problem solving",
+    href: "#contact", // scrolls to the contact form
+    description:
+      "If it needs fixing, improving or making good, send photos and a quick description – we’ll tell you honestly what’s involved.",
+  },
 ];
 
 export default function Services() {
   return (
     <section
       id="services"
-      className="border-b border-surfaceMuted/60 bg-background py-14 sm:py-16"
+      className="border-t border-surfaceMuted/60 bg-background py-10 sm:py-14 lg:py-16"
       aria-labelledby="services-heading"
     >
       <div className="section-wrapper">
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+        <header className="mb-6 flex flex-col gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
+              Core services
+            </p>
             <h2
               id="services-heading"
-              className="text-2xl sm:text-3xl font-semibold tracking-tight mb-1"
+              className="text-xl font-semibold tracking-tight sm:text-2xl"
             >
-              Trade services that actually turn up on time.
+              Construction-led fixes, not guesswork.
             </h2>
-            <p className="text-sm text-textMuted max-w-xl">
-              Whether it’s a one-off fix or an ongoing block of work, LDNFIX is
-              set up for reliable, scalable delivery across London.
+            <p className="mt-2 max-w-2xl text-sm text-textMuted">
+              From leaks and brickwork issues to refurbs and everyday repairs,
+              LDNFIX is built on 15+ years of real construction experience – not
+              a call centre or a lead-selling site.
             </p>
           </div>
-          <p className="text-xs text-textMuted">
-            Fully insured · Clear quotes · Respectful in occupied homes
-          </p>
-        </div>
+        </header>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {services.map((service) => (
-            <article
-              key={service.title}
-              className="rounded-2xl border border-surfaceMuted bg-surface p-5 sm:p-6 shadow-soft"
-            >
-              <h3 className="text-lg font-semibold mb-2">{service.title}</h3>
-              <p className="text-sm text-textMuted mb-3">
-                {service.description}
-              </p>
-              <ul className="space-y-1.5 text-xs text-textMuted">
-                {service.bullets.map((item) => (
-                  <li key={item} className="flex gap-2">
-                    <span className="mt-[5px] h-1 w-1 rounded-full bg-accent" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((service) => {
+            const isSamePageAnchor = service.href.startsWith("#");
+
+            // 🔹 Cards that scroll to the contact section
+            if (isSamePageAnchor) {
+              return (
+                <a
+                  key={service.id}
+                  href={service.href}
+                  className="group flex flex-col rounded-2xl border border-surfaceMuted bg-surface p-4 text-left shadow-soft transition hover:border-accent/70 hover:shadow-md"
+                >
+                  <div className="mb-2 flex items-center justify-between gap-2">
+                    <h3 className="text-sm font-semibold text-textPrimary">
+                      {service.title}
+                    </h3>
+                    <span className="rounded-full bg-surfaceMuted px-2 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-textMuted">
+                      {service.badge}
+                    </span>
+                  </div>
+                  <p className="mb-3 text-xs text-textMuted">
+                    {service.description}
+                  </p>
+                  <span className="mt-auto inline-flex items-center text-[11px] font-semibold text-accent">
+                    Send job details
+                    <span className="ml-1 transition group-hover:translate-x-0.5">
+                      →
+                    </span>
+                  </span>
+                </a>
+              );
+            }
+
+            // 🔹 Cards that go to full SEO service pages
+            return (
+              <Link
+                key={service.id}
+                href={service.href}
+                className="group flex flex-col rounded-2xl border border-surfaceMuted bg-surface p-4 text-left shadow-soft transition hover:border-accent/70 hover:shadow-md"
+              >
+                <div className="mb-2 flex items-center justify-between gap-2">
+                  <h3 className="text-sm font-semibold text-textPrimary">
+                    {service.title}
+                  </h3>
+                  <span className="rounded-full bg-surfaceMuted px-2 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-textMuted">
+                    {service.badge}
+                  </span>
+                </div>
+                <p className="mb-3 text-xs text-textMuted">
+                  {service.description}
+                </p>
+                <span className="mt-auto inline-flex items-center text-[11px] font-semibold text-accent">
+                  View service details
+                  <span className="ml-1 transition group-hover:translate-x-0.5">
+                    →
+                  </span>
+                </span>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,44 +1,57 @@
-import Link from "next/link";
-
-const phoneNumber = "+44 20 1234 5678";    // change later
-const emailAddress = "info@ldnfix.co.uk";  // change later
+// components/Footer.tsx
+import {
+  BUSINESS_NAME,
+  BUSINESS_TAGLINE,
+  PHONE_DISPLAY,
+  PHONE_TEL,
+  EMAIL,
+  WHATSAPP_URL
+} from "@/lib/siteConfig";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-surfaceMuted/60 bg-background py-8">
-      <div className="section-wrapper flex flex-col gap-6 md:flex-row md:items-center md:justify-between text-xs text-textMuted">
+    <footer className="border-t border-surfaceMuted/60 bg-surface">
+      <div className="section-wrapper py-6 sm:py-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between text-xs text-textMuted">
         <div>
-          <p className="font-semibold text-textPrimary mb-1">LDNFIX</p>
-          <p>London trade services · Plastering · Roofing · Repairs</p>
-          <p className="mt-1">
-            {phoneNumber} ·{" "}
-            <a
-              href={`mailto:${emailAddress}`}
-              className="hover:text-accent break-all"
-            >
-              {emailAddress}
-            </a>
+          <div className="flex items-baseline gap-2">
+            <span className="text-sm font-semibold tracking-[0.24em] text-accent uppercase">
+              {BUSINESS_NAME}
+            </span>
+            <span className="hidden text-[11px] uppercase tracking-[0.26em] sm:inline">
+              {BUSINESS_TAGLINE}
+            </span>
+          </div>
+          <p className="mt-2">
+            Construction-led multi-trade repairs, refurbishments and managed
+            specialist works across Greater London.
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-x-6 gap-y-2">
-          <a href="#services" className="hover:text-accent">
-            Services
-          </a>
-          <a href="#about" className="hover:text-accent">
-            About
-          </a>
-          <a href="#contact" className="hover:text-accent">
-            Contact
-          </a>
-          <Link href="/" className="hover:text-accent">
-            Privacy & cookies
-          </Link>
+        <div className="space-y-1">
+          <p>
+            📞{" "}
+            <a href={`tel:${PHONE_TEL}`} className="hover:text-accent">
+              {PHONE_DISPLAY}
+            </a>
+          </p>
+          <p>
+            📧{" "}
+            <a href={`mailto:${EMAIL}`} className="hover:text-accent">
+              {EMAIL}
+            </a>
+          </p>
+          <p>
+            💬{" "}
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-accent"
+            >
+              WhatsApp
+            </a>
+          </p>
         </div>
-
-        <p className="text-[11px] text-textMuted/80">
-          © {new Date().getFullYear()} LDNFIX. All rights reserved.
-        </p>
       </div>
     </footer>
   );

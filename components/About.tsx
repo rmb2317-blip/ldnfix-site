@@ -2,7 +2,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="border-b border-surfaceMuted/60 bg-surface py-14 sm:py-16"
+      className="border-b border-surfaceMuted/60 bg-surface py-12 sm:py-14"
       aria-labelledby="about-heading"
     >
       <div className="section-wrapper grid gap-8 lg:grid-cols-2 lg:items-start">
@@ -11,67 +11,55 @@ export default function About() {
             id="about-heading"
             className="text-2xl sm:text-3xl font-semibold tracking-tight mb-3"
           >
-            15+ years on the tools, now building reliable crews.
+            Proper trades background, not a call centre.
           </h2>
           <p className="text-sm text-textMuted mb-3">
-            LDNFIX was built from real site experience. We started on the tools
-            — plastering, roofing, making good after other trades — and grew by
-            simply turning up when we said we would and doing the job properly.
+            I&apos;m [Your Name], the founder of LDNFIX. I&apos;ve spent over 15 years
+            on the tools — from plastering and roofing to repairs and refurbs.
+            Now I run LDNFIX to give Londoners a better way to get jobs done:
+            trusted quotes, no ghosting, no cowboys.
           </p>
           <p className="text-sm text-textMuted mb-3">
-            Today we support homeowners, landlords, property managers and main
-            contractors across London with a trusted network of tradespeople.
-            We&apos;re set up for subcontracting, larger blocks of work and
-            ongoing maintenance, without losing that hands-on attitude.
+            I still enjoy being on site and I only work with tradesmen I&apos;d
+            trust in my own home. Whether I&apos;m doing the work myself or
+            bringing in one of my vetted pros, I stay responsible for the
+            result and communicate in plain English.
           </p>
           <p className="text-sm text-textMuted">
-            Every job has clear notes, photos and a simple, honest scope agreed
-            up front. If we see something that will cause you issues later,
-            we&apos;ll flag it, not hide it.
+            That&apos;s what{" "}
+            <span className="font-semibold text-textPrimary">
+              &quot;Fixing London. Properly.&quot;
+            </span>{" "}
+            means to me — honest advice, solid workmanship and no disappearing
+            acts once the invoice is paid.
           </p>
         </div>
 
         <div className="space-y-4">
-          <div className="rounded-2xl border border-surfaceMuted bg-background/60 p-5">
+          <div className="rounded-2xl border border-surfaceMuted bg-background/60 p-4">
             <h3 className="text-sm font-semibold mb-2">
-              Built for property professionals
+              Built around London property life
             </h3>
-            <p className="text-xs text-textMuted mb-3">
-              We know how important it is to keep tenants, clients and main
-              contractors informed. That&apos;s why we focus on:
-            </p>
-            <ul className="grid gap-2 text-xs text-textMuted">
-              <li className="flex gap-2">
-                <span className="mt-[3px] h-1.5 w-1.5 rounded-full bg-accent" />
-                <span>Fast, written quotes and day rates.</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-[3px] h-1.5 w-1.5 rounded-full bg-accent" />
-                <span>Predictable attendance and clear scheduling.</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-[3px] h-1.5 w-1.5 rounded-full bg-accent" />
-                <span>Respectful conduct in occupied properties.</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-[3px] h-1.5 w-1.5 rounded-full bg-accent" />
-                <span>Photo reports when you can&apos;t be on-site.</span>
-              </li>
+            <ul className="space-y-1.5 text-xs text-textMuted">
+              <li>• Quick updates via WhatsApp, email or phone.</li>
+              <li>• Sensible slots that work around tenants and busy diaries.</li>
+              <li>• Clear before-and-after photos when you can&apos;t be on site.</li>
+              <li>• Happy to work directly with landlords, agents or owners.</li>
             </ul>
           </div>
 
           <div className="grid grid-cols-3 gap-3 text-xs text-textMuted">
-            <div className="rounded-2xl border border-surfaceMuted bg-background/50 p-3">
+            <div className="rounded-2xl border border-surfaceMuted bg-background/60 p-3">
               <p className="text-2xl font-semibold mb-1 text-accent">15+</p>
-              <p>Years in trades</p>
+              <p>years on the tools</p>
             </div>
-            <div className="rounded-2xl border border-surfaceMuted bg-background/50 p-3">
+            <div className="rounded-2xl border border-surfaceMuted bg-background/60 p-3">
               <p className="text-2xl font-semibold mb-1 text-accent">London</p>
-              <p>Zones 1–6 covered</p>
+              <p>within the M25</p>
             </div>
-            <div className="rounded-2xl border border-surfaceMuted bg-background/50 p-3">
-              <p className="text-2xl font-semibold mb-1 text-accent">Same</p>
-              <p>Week availability</p>
+            <div className="rounded-2xl border border-surfaceMuted bg-background/60 p-3">
+              <p className="text-2xl font-semibold mb-1 text-accent">Repeat</p>
+              <p>clients & referrals</p>
             </div>
           </div>
         </div>

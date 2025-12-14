@@ -1,24 +1,27 @@
-const config = {
+// tailwind.config.ts
+import type { Config } from "tailwindcss";
+
+const config: Config = {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}"
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
     extend: {
       colors: {
-        background: "#050816",
-        surface: "#0b1020",
-        surfaceMuted: "#111827",
-        accent: "#facc15",
-        accentSoft: "#fef3c7",
-        textPrimary: "#f9fafb",
+        background: "#050608",
+        surface: "#0f1115",
+        surfaceMuted: "#2a2d35",
+        accent: "#f3c53f",
+        textPrimary: "#f8fafc",
         textMuted: "#9ca3af"
       },
       boxShadow: {
-        soft: "0 18px 45px rgba(0,0,0,0.35)"
+        soft: "0 18px 45px rgba(0,0,0,0.45)"
       },
-      maxWidth: {
-        content: "1120px"
+      borderRadius: {
+        xl: "0.9rem",
+        "2xl": "1.25rem"
       }
     }
   },

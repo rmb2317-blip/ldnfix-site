@@ -6,22 +6,18 @@
   color-scheme: dark;
 }
 
-html,
 body {
-  padding: 0;
-  margin: 0;
+  @apply bg-background text-textPrimary;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
 }
 
-body {
-  @apply bg-background text-textPrimary antialiased;
+/* shared wrapper used in components */
+.section-wrapper {
+  @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
-/* Smooth scrolling for in-page anchors */
+/* smooth scrolling for nav anchors */
 html {
   scroll-behavior: smooth;
-}
-
-/* Container utility */
-.section-wrapper {
-  @apply max-w-content mx-auto px-4 sm:px-6 lg:px-8;
 }
