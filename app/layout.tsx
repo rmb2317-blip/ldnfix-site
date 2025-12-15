@@ -10,6 +10,7 @@ import {
   WHATSAPP_URL,
   SERVICE_AREAS,
 } from "@/lib/siteConfig";
+import StickyContactBar from "@/components/StickyContactBar";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -115,7 +116,11 @@ export default function RootLayout({
             />
           </noscript>
         )}
+
         {children}
+
+        {/* Site-wide sticky mobile CTA bar (WhatsApp + Call) */}
+        <StickyContactBar />
       </body>
     </html>
   );
