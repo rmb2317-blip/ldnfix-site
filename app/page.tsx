@@ -1,4 +1,5 @@
 // app/page.tsx
+import WorkShowcase from "@/components/WorkShowcase";
 import ExitIntentModal from "@/components/ExitIntentModal";
 import HeroSection from "@/components/HeroSection";
 import WhyChooseLDNFIX from "@/components/WhyChooseLDNFIX";
@@ -9,7 +10,7 @@ import Testimonials from "@/components/Testimonials";
 import AreasCovered from "@/components/AreasCovered";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import HomepageFAQ from "@/components/HomepageFAQ";
 
 export default function HomePage() {
   return (
@@ -21,14 +22,13 @@ export default function HomePage() {
         <SpecialistTradesNetwork />
         <FounderExperienceSection />
         <Testimonials />
+        <WorkShowcase /> {/* Before/after proof section */}
+        <HomepageFAQ />  {/* New FAQ section with schema */}
         <AreasCovered />
         <ContactSection />
       </main>
 
       <Footer />
-
-      {/* Sticky WhatsApp bar at the very bottom */}
-      <FloatingWhatsApp />
 
       {/* Desktop-only exit-intent modal */}
       <ExitIntentModal />
