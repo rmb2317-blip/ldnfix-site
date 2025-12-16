@@ -1,0 +1,38 @@
+"use client";
+
+import { PHONE_TEL, PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/siteConfig";
+
+export default function StickyContactBar() {
+  return (
+    <div
+      className="fixed inset-x-0 bottom-0 z-40 block md:hidden"
+      aria-label="Quick contact options"
+    >
+      <div className="mx-auto mb-3 flex max-w-3xl items-center gap-2 rounded-full bg-surface/95 px-3 py-2 shadow-soft ring-1 ring-surfaceMuted/70 backdrop-blur">
+        <p className="hidden flex-1 text-[11px] font-medium text-textMuted xs:block">
+          Need it fixed? Get a fast quote now.
+        </p>
+
+        <div className="flex flex-1 items-center justify-between gap-2 xs:flex-none">
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex flex-1 items-center justify-center rounded-full bg-accent px-3 py-2 text-xs font-semibold text-background shadow-soft transition hover:bg-yellow-400"
+            data-event="cta-click-send-photo"
+          >
+            📸 Send photo
+          </a>
+
+          <a
+            href={`tel:${PHONE_TEL}`}
+            className="inline-flex flex-1 items-center justify-center rounded-full border border-accent/60 bg-background px-3 py-2 text-xs font-semibold text-accent transition hover:bg-accent hover:text-background"
+            data-event="cta-click-call"
+          >
+            📞 Call {PHONE_DISPLAY}
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}

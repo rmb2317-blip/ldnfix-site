@@ -207,6 +207,24 @@ export default function RoofingGutteringPage() {
                 </div>
               </div>
 
+              {/* Enfield-specific internal link */}
+              <div className="rounded-2xl border border-dashed border-surfaceMuted bg-surface px-4 py-3 text-xs text-textMuted">
+                <p className="font-semibold text-textPrimary mb-1">
+                  Based in Enfield?
+                </p>
+                <p className="mb-1">
+                  There&apos;s a dedicated page for{" "}
+                  <Link
+                    href="/roof-repairs-enfield"
+                    className="font-semibold text-accent underline-offset-2 hover:underline"
+                  >
+                    roof repairs in Enfield
+                  </Link>
+                  , focused on the EN1–EN3 area, typical house types and how I
+                  handle local roof issues.
+                </p>
+              </div>
+
               <div>
                 <h2 className="mb-2 text-sm font-semibold text-textPrimary">
                   Areas covered for roofing & guttering
