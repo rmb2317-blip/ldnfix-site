@@ -1,5 +1,6 @@
 // app/layout.tsx
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import {
   SITE_URL,
@@ -12,8 +13,8 @@ import {
 } from "@/lib/siteConfig";
 import StickyContactBar from "@/components/StickyContactBar";
 
-// 🔴 IMPORTANT: replace this with your real GTM ID, e.g. "GTM-AB12CDE"
-const GTM_ID = "GTM-XXXXXXX";
+// ✅ Your real GA4 measurement ID
+const GA_MEASUREMENT_ID = "G-NEWTCWTE6S";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -88,35 +89,23 @@ export default function RootLayout({
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
         />
-
-        {/* Google Tag Manager – goes in <head> */}
-        {GTM_ID && (
-          <script
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: `
-                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','${GTM_ID}');
-              `,
-            }}
-          />
-        )}
       </head>
       <body className="bg-background text-textPrimary antialiased">
-        {/* Google Tag Manager (noscript) – goes just inside <body> */}
-        {GTM_ID && (
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-              height="0"
-              width="0"
-              style={{ display: "none", visibility: "hidden" }}
-            />
-          </noscript>
-        )}
+        {/* ✅ Google Analytics 4 (gtag.js) */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}', {
+              send_page_view: true
+            });
+          `}
+        </Script>
 
         {children}
 
