@@ -12,6 +12,9 @@ import {
 } from "@/lib/siteConfig";
 import StickyContactBar from "@/components/StickyContactBar";
 
+// 🔴 IMPORTANT: replace this with your real GTM ID, e.g. "GTM-AB12CDE"
+const GTM_ID = "GTM-XXXXXXX";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -39,9 +42,6 @@ export const metadata: Metadata = {
       "London multi-trade repairs, refurbs and maintenance with 15+ years real construction experience behind every quote.",
   },
 };
-
-// Optional: Google Tag Manager support (fill in on Vercel later)
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
 export default function RootLayout({
   children,
@@ -89,7 +89,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
         />
 
-        {/* Optional Google Tag Manager – only renders if NEXT_PUBLIC_GTM_ID is set */}
+        {/* Google Tag Manager – goes in <head> */}
         {GTM_ID && (
           <script
             // eslint-disable-next-line react/no-danger
@@ -106,6 +106,7 @@ export default function RootLayout({
         )}
       </head>
       <body className="bg-background text-textPrimary antialiased">
+        {/* Google Tag Manager (noscript) – goes just inside <body> */}
         {GTM_ID && (
           <noscript>
             <iframe
