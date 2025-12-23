@@ -10,17 +10,17 @@ export default function AreasCovered() {
       aria-labelledby="areas-heading"
     >
       <div className="section-wrapper">
-        <header className="mb-6 sm:mb-8">
+        <header className="mb-6 max-w-3xl sm:mb-8">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
             Areas covered
           </p>
           <h2
             id="areas-heading"
-            className="text-xl font-semibold tracking-tight sm:text-2xl"
+            className="mt-1 text-xl font-semibold tracking-tight sm:text-2xl"
           >
             Based in Enfield. Working across North & East London.
           </h2>
-          <p className="mt-2 max-w-2xl text-sm text-textMuted">
+          <p className="mt-2 text-sm text-textMuted">
             LDNFIX is based in Enfield and regularly works across North & East
             London and within the M25. Ideal for homeowners, landlords and
             agents who want someone close enough to actually turn up when they
@@ -28,52 +28,108 @@ export default function AreasCovered() {
           </p>
         </header>
 
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICE_AREAS.map((area) => (
-            <div
-              key={area}
-              className="rounded-xl border border-surfaceMuted bg-surface px-3 py-3 text-sm text-textMuted"
-            >
-              {area}
-            </div>
-          ))}
+        {/* Borough list */}
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-6 text-sm">
+          {SERVICE_AREAS.map((area) => {
+            // We can add special links for key areas
+            if (area.startsWith("Enfield")) {
+              return (
+                <div
+                  key={area}
+                  className="rounded-2xl border border-surfaceMuted bg-surface px-4 py-3 text-sm"
+                >
+                  <div className="font-semibold text-textPrimary">{area}</div>
+                  <p className="mt-1 text-xs text-textMuted">
+                    Local base – ideal for{" "}
+                    <Link
+                      href="/roof-repairs-enfield"
+                      className="underline-offset-2 hover:underline text-accent"
+                    >
+                      roof repairs
+                    </Link>{" "}
+                    and{" "}
+                    <Link
+                      href="/plasterer-enfield"
+                      className="underline-offset-2 hover:underline text-accent"
+                    >
+                      plastering
+                    </Link>{" "}
+                    in EN1–EN3.
+                  </p>
+                </div>
+              );
+            }
+
+            if (area === "Barnet") {
+              return (
+                <div
+                  key={area}
+                  className="rounded-2xl border border-surfaceMuted bg-surface px-4 py-3 text-sm"
+                >
+                  <div className="font-semibold text-textPrimary">{area}</div>
+                  <p className="mt-1 text-xs text-textMuted">
+                    Common jobs include{" "}
+                    <Link
+                      href="/roof-repairs-barnet"
+                      className="underline-offset-2 hover:underline text-accent"
+                    >
+                      roof repairs in Barnet
+                    </Link>{" "}
+                    and surrounding North London streets.
+                  </p>
+                </div>
+              );
+            }
+
+            if (area === "Hackney") {
+              return (
+                <div
+                  key={area}
+                  className="rounded-2xl border border-surfaceMuted bg-surface px-4 py-3 text-sm"
+                >
+                  <div className="font-semibold text-textPrimary">{area}</div>
+                  <p className="mt-1 text-xs text-textMuted">
+                    Regular work across Hackney for{" "}
+                    <Link
+                      href="/roof-repairs-hackney"
+                      className="underline-offset-2 hover:underline text-accent"
+                    >
+                      roof repairs
+                    </Link>{" "}
+                    and{" "}
+                    <Link
+                      href="/plasterer-hackney"
+                      className="underline-offset-2 hover:underline text-accent"
+                    >
+                      plastering
+                    </Link>
+                    .
+                  </p>
+                </div>
+              );
+            }
+
+            // Default card for all other areas
+            return (
+              <div
+                key={area}
+                className="rounded-2xl border border-surfaceMuted bg-surface px-4 py-3 text-sm"
+              >
+                <div className="font-semibold text-textPrimary">{area}</div>
+                <p className="mt-1 text-xs text-textMuted">
+                  Jobs considered here depending on scope and timings – worth
+                  getting in touch.
+                </p>
+              </div>
+            );
+          })}
         </div>
 
-        <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-          <p className="text-xs text-textMuted">
-            If you&apos;re just outside these areas and the job is a good fit,
-            it&apos;s still worth getting in touch. For larger projects and
-            refurbs, I can often travel further where it makes sense.
-          </p>
-
-          <div className="rounded-2xl border border-dashed border-surfaceMuted bg-surface px-4 py-3 text-xs text-textMuted">
-            <p className="mb-1 font-semibold text-textPrimary">
-              Based in Enfield? Start here:
-            </p>
-            <ul className="list-disc pl-4 space-y-1">
-              <li>
-                <Link
-                  href="/roof-repairs-enfield"
-                  className="font-semibold text-accent underline-offset-2 hover:underline"
-                >
-                  Roof repairs in Enfield
-                </Link>{" "}
-                – focused on typical local roof leaks, tiles and gutter issues
-                in EN1–EN3.
-              </li>
-              <li>
-                <Link
-                  href="/plasterer-enfield"
-                  className="font-semibold text-accent underline-offset-2 hover:underline"
-                >
-                  Plasterer in Enfield
-                </Link>{" "}
-                – ceilings and walls made good properly after leaks, refurbs and
-                previous bad work.
-              </li>
-            </ul>
-          </div>
-        </div>
+        <p className="text-xs text-textMuted max-w-2xl">
+          If you&apos;re just outside these areas and the job is a good fit,
+          it&apos;s still worth getting in touch. For larger projects and
+          refurbs, travel can often be arranged where it makes sense.
+        </p>
       </div>
     </section>
   );
