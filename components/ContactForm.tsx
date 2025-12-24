@@ -24,17 +24,8 @@ export default function ContactForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleNext = (e: React.FormEvent) => {
-    e.preventDefault();
-    setStep(2);
-  };
-
-  const handleSubmit = () => {
-    // let the browser submit the form normally (to Formspree)
-    setSubmitting(true);
-    // we’ll just show a “thanks” message after redirect / back
-    setTimeout(() => setSubmitted(true), 2000);
-  };
+  const totalSteps = 2;
+  const stepPercent = step === 1 ? 50 : 100;
 
   const personaLabel = (() => {
     switch (persona) {
@@ -53,15 +44,31 @@ export default function ContactForm() {
     }
   })();
 
+  const handleNext = () => {
+    setStep(2);
+  };
+
+  const handleSubmit = () => {
+    // Let the browser submit the form to Formspree (or your endpoint)
+    // We only use this to show UI feedback if the user stays on the page
+    setSubmitting(true);
+
+    // Fallback UI if there is no redirect
+    setTimeout(() => {
+      setSubmitting(false);
+      setSubmitted(true);
+    }, 2500);
+  };
+
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
       {/* LEFT: form */}
       <div>
         <header className="mb-5">
-          <p className="text-xs uppercase tracking-[0.22em] text-accent font-semibold mb-1">
+          <p className="mb-1 text-xs font-semibold uppercase tracking-[0.22em] text-accent">
             Fast quote request
           </p>
-          <h2 className="text-xl sm:text-2xl font-semibold mb-1">
+          <h2 className="mb-1 text-xl font-semibold sm:text-2xl">
             Need it fixed? Send your details for a fast, straight-talking quote.
           </h2>
           <p className="text-sm text-textMuted">
@@ -77,24 +84,53 @@ export default function ContactForm() {
           </p>
         </header>
 
+        {/* STEP INDICATOR */}
+        <div className="mb-3 flex items-center justify-between text-[11px] text-textMuted">
+          <div className="flex items-center gap-2">
+            <span
+              className="inline-flex h-6 min-w-[70px] items-center justify-center rounded-full bg-surfaceMuted px-2 text-[10px] font-semibold uppercase tracking-[0.18em]"
+              aria-live="polite"
+            >
+              Step {step} of {totalSteps}
+            </span>
+            <span className="hidden sm:inline">
+              {step === 1
+                ? "Start with your details and photos."
+                : "Now tell me what needs fixing."}
+            </span>
+          </div>
+          <div className="hidden w-28 overflow-hidden rounded-full bg-surfaceMuted/70 sm:block">
+            <div
+              className="h-1 rounded-full bg-accent transition-all"
+              style={{ width: `${stepPercent}%` }}
+            />
+          </div>
+        </div>
+
         <form
           action={FORM_ENDPOINT}
           method="POST"
           encType="multipart/form-data"
           onSubmit={handleSubmit}
-          className="space-y-5 rounded-2xl border border-surfaceMuted bg-surface px-4 py-5 sm:px-6 sm:py-6 shadow-soft"
+          className="space-y-5 rounded-2xl border border-surfaceMuted bg-surface px-4 py-5 shadow-soft sm:px-6 sm:py-6"
           data-event="lead-submit"
           data-source="contact-form-main"
+          data-persona={persona || "unspecified"}
         >
           {/* hidden meta fields for your inbox / analytics */}
           <input type="hidden" name="persona" value={persona} />
-          <input type="hidden" name="form_source" value="ldnfix.co.uk/contact" />
+          <input
+            type="hidden"
+            name="form_source"
+            value="ldnfix.co.uk/contact-main"
+          />
+          <input type="hidden" name="form_step_version" value="2-step" />
 
           {/* STEP 1 */}
           {step === 1 && (
             <>
               <div className="mb-2">
-                <p className="text-xs font-semibold text-textMuted uppercase tracking-[0.18em] mb-2">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-textMuted">
                   Step 1 · Who is the job for?
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -119,6 +155,10 @@ export default function ContactForm() {
                     </button>
                   ))}
                 </div>
+                <p className="mt-1 text-[11px] text-textMuted">
+                  This just helps me understand how you use the property and
+                  how to schedule the work.
+                </p>
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2">
@@ -199,7 +239,7 @@ export default function ContactForm() {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-background shadow-soft hover:bg-yellow-400 transition"
+                  className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-background shadow-soft transition hover:bg-yellow-400"
                   data-event="lead-step-next"
                   data-source="contact-step1"
                 >
@@ -226,7 +266,7 @@ export default function ContactForm() {
           {step === 2 && (
             <>
               <div className="space-y-1">
-                <p className="text-xs font-semibold text-textMuted uppercase tracking-[0.18em]">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-textMuted">
                   Step 2 · What needs fixing?
                 </p>
                 <label className="text-xs font-medium text-textMuted">
@@ -299,7 +339,7 @@ export default function ContactForm() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-background shadow-soft hover:bg-yellow-400 transition disabled:opacity-70"
+                  className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-background shadow-soft transition hover:bg-yellow-400 disabled:opacity-70"
                 >
                   {submitting
                     ? "Sending your request..."
@@ -316,7 +356,11 @@ export default function ContactForm() {
         </form>
 
         {submitted && (
-          <p className="mt-3 text-xs text-green-400">
+          <p
+            className="mt-3 text-xs text-green-400"
+            aria-live="polite"
+            role="status"
+          >
             Thanks – your request has been sent. I&apos;ll come back to you as
             soon as possible.
           </p>
@@ -326,10 +370,10 @@ export default function ContactForm() {
       {/* RIGHT: trust & quick contact options */}
       <aside className="space-y-4 text-sm text-textMuted">
         <div className="rounded-2xl border border-surfaceMuted bg-surface px-4 py-4 sm:px-5 sm:py-5">
-          <h3 className="text-sm font-semibold mb-2">
-            Why quotes from LDNFIX convert into good jobs:
+          <h3 className="mb-2 text-sm font-semibold text-textPrimary">
+            Why quotes from LDNFIX turn into good jobs:
           </h3>
-          <ul className="list-disc pl-4 space-y-1 text-xs">
+          <ul className="list-disc space-y-1 pl-4 text-xs">
             <li>Pricing done by someone with 15+ years on the tools.</li>
             <li>No pushy sales – just what the job needs, explained clearly.</li>
             <li>
@@ -340,10 +384,10 @@ export default function ContactForm() {
         </div>
 
         <div className="rounded-2xl border border-dashed border-surfaceMuted/80 bg-surface px-4 py-4 sm:px-5 sm:py-5">
-          <p className="text-xs mb-2 font-semibold text-textPrimary">
+          <p className="mb-2 text-xs font-semibold text-textPrimary">
             Prefer WhatsApp?
           </p>
-          <p className="text-xs mb-3">
+          <p className="mb-3 text-xs">
             Tap below to send photos and a quick voice note. It&apos;s often the
             fastest way to get an accurate idea of cost.
           </p>
@@ -351,7 +395,7 @@ export default function ContactForm() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center rounded-full border border-accent bg-background px-4 py-2 text-xs font-semibold text-accent hover:bg-accent hover:text-background transition"
+            className="inline-flex items-center justify-center rounded-full border border-accent bg-background px-4 py-2 text-xs font-semibold text-accent transition hover:bg-accent hover:text-background"
             data-event="whatsapp-cta-side"
           >
             📸 Send job photos on WhatsApp
