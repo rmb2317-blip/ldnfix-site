@@ -3,17 +3,17 @@ export default function HeroSection() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden bg-gradient-to-b from-black via-slate-900 to-black text-white"
+      className="relative overflow-hidden bg-black text-white"
       aria-labelledby="hero-heading"
     >
       {/* Background image */}
       <div
-        className="pointer-events-none absolute inset-0 bg-[url('/images/hero-repairs-london.jpg')] bg-cover bg-center opacity-20 blur-sm"
+        className="pointer-events-none absolute inset-0 bg-[url('/images/hero-repairs-london.jpg')] bg-cover bg-center opacity-30"
         aria-hidden="true"
       />
       {/* Dark overlay to keep text readable */}
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/60"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/60"
         aria-hidden="true"
       />
 
@@ -57,7 +57,7 @@ export default function HeroSection() {
           <a
             href="tel:02036338772"
             aria-label="Call LDNFIX now on 020 3633 8772"
-            className="inline-flex items-center justify-center rounded-full border border-accent/80 bg-black/40 px-6 py-3 text-sm font-semibold text-accent shadow-soft transition hover:-translate-y-[1px] hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            className="inline-flex items-center justify-center rounded-full border border-accent/80 bg-black/50 px-6 py-3 text-sm font-semibold text-accent shadow-soft transition hover:-translate-y-[1px] hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             📞 Call now
             <span className="ml-2 hidden text-[13px] font-normal sm:inline">
@@ -76,21 +76,24 @@ export default function HeroSection() {
           </a>
         </div>
 
-        {/* Trust row */}
-        <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-textMuted sm:text-[13px]">
-          <div className="flex items-center gap-2">
-            <span aria-hidden="true">⭐️⭐️⭐️⭐️⭐️</span>
-            <span>Rated &amp; recommended by London homeowners</span>
-          </div>
-          <div className="h-3 w-px bg-slate-700 hidden sm:block" aria-hidden="true" />
-          <div className="flex items-center gap-2">
+        {/* Trust badges stacked under CTAs */}
+        <div
+          className="mt-3 flex flex-wrap gap-2 text-[11px] sm:text-xs"
+          aria-label="Trust badges showing why London homeowners choose LDNFIX"
+        >
+          <div className="inline-flex items-center gap-1 rounded-full border border-slate-700/80 bg-black/60 px-3 py-1">
             <span aria-hidden="true">🛡️</span>
-            <span>Fully insured, construction-led multi-trade service</span>
+            <span className="font-medium">Fully insured</span>
           </div>
-          <div className="h-3 w-px bg-slate-700 hidden sm:block" aria-hidden="true" />
-          <div className="flex items-center gap-2">
+          <div className="inline-flex items-center gap-1 rounded-full border border-slate-700/80 bg-black/60 px-3 py-1">
+            <span aria-hidden="true" className="text-yellow-300">
+              ★★★★★
+            </span>
+            <span className="font-medium">Rated 5★ by London clients</span>
+          </div>
+          <div className="inline-flex items-center gap-1 rounded-full border border-slate-700/80 bg-black/60 px-3 py-1">
             <span aria-hidden="true">📍</span>
-            <span>Working across Enfield, North, East &amp; Greater London</span>
+            <span className="font-medium">London-wide coverage</span>
           </div>
         </div>
       </div>
