@@ -1,4 +1,5 @@
 // components/WorkShowcase.tsx
+import Image from "next/image";
 import { PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL } from "@/lib/siteConfig";
 
 const jobs = [
@@ -12,6 +13,8 @@ const jobs = [
     quote:
       "Turned up when he said, sorted the leak and the ceiling looks brand new. Very easy to deal with.",
     name: "Emma · Enfield",
+    beforeImage: "/images/work/enfield-ceiling-before.jpg", // add to /public when ready
+    afterImage: "/images/work/enfield-ceiling-after.jpg",
   },
   {
     area: "Tottenham · N17",
@@ -23,6 +26,8 @@ const jobs = [
     quote:
       "Explained the options clearly, priced it properly and the outhouse is now completely dry.",
     name: "James · Tottenham",
+    beforeImage: "/images/work/tottenham-outhouse-before.jpg",
+    afterImage: "/images/work/tottenham-outhouse-after.jpg",
   },
 ];
 
@@ -30,76 +35,113 @@ export default function WorkShowcase() {
   return (
     <section
       id="work"
-      className="border-t border-surfaceMuted/60 bg-background py-10 sm:py-14 lg:py-16"
+      className="border-t border-surfaceMuted/60 bg-background py-12 sm:py-16 lg:py-20"
       aria-labelledby="work-heading"
     >
       <div className="section-wrapper">
-        <header className="mb-6 max-w-3xl sm:mb-8">
+        {/* Header */}
+        <header className="mb-8 max-w-3xl lg:mb-10">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
-            Recent work
+            Proof of proper work
           </p>
           <h2
             id="work-heading"
-            className="mt-1 text-xl font-semibold tracking-tight sm:text-2xl lg:text-[26px]"
+            className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl lg:text-[28px]"
           >
-            Real jobs, handled end-to-end.
+            Real London jobs, finished to a standard you can photograph.
           </h2>
-          <p className="mt-2 text-sm text-textMuted">
-            Here&apos;s the kind of work LDNFIX is built for – leaks, damage
-            and tired spaces turned into clean, solid finishes that are ready
-            for real life. As more projects are photographed, this gallery will
-            grow.
+          <p className="mt-3 text-sm text-textMuted sm:text-[15px]">
+            Every job below started as a problem – leaks, damage or tired spaces.
+            LDNFIX took them from &quot;something&apos;s not right&quot; to clean,
+            solid, signed-off finishes. As more projects are documented, this
+            gallery will grow.
           </p>
         </header>
 
-        <div className="grid gap-4 lg:grid-cols-2">
+        {/* Grid of jobs */}
+        <div className="grid gap-5 lg:grid-cols-2">
           {jobs.map((job) => (
             <article
               key={job.title}
-              className="flex h-full flex-col rounded-2xl border border-surfaceMuted bg-surface/95 p-4 text-sm shadow-soft transition hover:border-accent/60 hover:shadow-md sm:p-5"
+              className="flex h-full flex-col rounded-2xl border border-surfaceMuted bg-surface/95 p-4 text-sm shadow-soft transition hover:-translate-y-[2px] hover:border-accent/60 hover:shadow-lg sm:p-5"
             >
-              <div className="mb-2 flex items-center justify-between gap-2">
+              {/* Top meta */}
+              <div className="mb-3 flex items-center justify-between gap-2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-textMuted">
                   {job.area}
                 </p>
                 <span className="inline-flex items-center rounded-full bg-accent/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-accent">
-                  Before &amp; after
+                  Before &amp; After
                 </span>
               </div>
-              <h3 className="mb-2 text-sm font-semibold text-textPrimary">
+
+              <h3 className="mb-2 text-sm font-semibold text-textPrimary sm:text-[15px]">
                 {job.title}
               </h3>
-              <p className="mb-3 text-xs text-textMuted">{job.description}</p>
+              <p className="mb-4 text-xs text-textMuted sm:text-[13px]">
+                {job.description}
+              </p>
 
-              {/* Before / after labels (image placeholders for now) */}
-              <div className="mb-3 grid gap-2 sm:grid-cols-2">
-                <div className="rounded-xl border border-surfaceMuted bg-background/60 p-3 text-[11px]">
-                  <p className="mb-1 font-semibold text-textPrimary">
-                    Before
-                  </p>
-                  <p className="text-[11px] text-textMuted">
-                    {job.beforeLabel}
-                  </p>
-                  <p className="mt-2 text-[10px] text-textMuted/80">
-                    When you supply photos, this is where the &quot;before&quot; image sits – ideal
-                    for your own records.
-                  </p>
+              {/* Visual row: before / after */}
+              <div className="mb-4 grid gap-3 sm:grid-cols-2">
+                {/* Before */}
+                <div className="flex flex-col overflow-hidden rounded-xl border border-surfaceMuted bg-background/70">
+                  <div className="relative aspect-video w-full overflow-hidden">
+                    <div className="absolute inset-0 bg-slate-900/40" aria-hidden="true" />
+                    <Image
+                      src={job.beforeImage}
+                      alt={`Before – ${job.beforeLabel} in ${job.area}`}
+                      fill
+                      className="object-cover"
+                      loading="lazy"
+                    />
+                    <div className="relative flex h-full items-start justify-between p-2">
+                      <span className="rounded-full bg-black/70 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-100">
+                        Before
+                      </span>
+                    </div>
+                  </div>
+                  <div className="px-3 py-2">
+                    <p className="text-[11px] font-medium text-textPrimary">
+                      {job.beforeLabel}
+                    </p>
+                    <p className="mt-1 text-[11px] text-textMuted">
+                      How it looked when LDNFIX was first called in.
+                    </p>
+                  </div>
                 </div>
-                <div className="rounded-xl border border-accent/40 bg-accent/5 p-3 text-[11px]">
-                  <p className="mb-1 font-semibold text-textPrimary">
-                    After
-                  </p>
-                  <p className="text-[11px] text-textMuted">
-                    {job.afterLabel}
-                  </p>
-                  <p className="mt-2 text-[10px] text-textMuted/80">
-                    Finished work photographed at handover – a clean record for
-                    landlords, agents and homeowners.
-                  </p>
+
+                {/* After */}
+                <div className="flex flex-col overflow-hidden rounded-xl border border-accent/50 bg-accent/5">
+                  <div className="relative aspect-video w-full overflow-hidden">
+                    <div className="absolute inset-0 bg-emerald-500/5" aria-hidden="true" />
+                    <Image
+                      src={job.afterImage}
+                      alt={`After – ${job.afterLabel} in ${job.area}`}
+                      fill
+                      className="object-cover"
+                      loading="lazy"
+                    />
+                    <div className="relative flex h-full items-start justify-between p-2">
+                      <span className="rounded-full bg-accent px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-black">
+                        After
+                      </span>
+                    </div>
+                  </div>
+                  <div className="px-3 py-2">
+                    <p className="text-[11px] font-medium text-textPrimary">
+                      {job.afterLabel}
+                    </p>
+                    <p className="mt-1 text-[11px] text-textMuted">
+                      Finished, photographed and handed back ready for real life
+                      again.
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <div className="mt-auto rounded-xl border border-surfaceMuted/80 bg-background/40 p-3 text-[11px] text-textMuted">
+              {/* Quote */}
+              <div className="mt-auto rounded-xl border border-surfaceMuted/80 bg-background/60 p-3 text-[11px] text-textMuted sm:text-[12px]">
                 <p className="mb-1 italic">&ldquo;{job.quote}&rdquo;</p>
                 <p className="font-semibold text-textPrimary">{job.name}</p>
               </div>
@@ -108,21 +150,21 @@ export default function WorkShowcase() {
         </div>
 
         {/* CTA strip under gallery */}
-        <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-dashed border-surfaceMuted/80 bg-surface/70 px-4 py-3 text-[11px] text-textMuted sm:flex-row sm:items-center sm:justify-between sm:px-5">
-          <div>
-            <p className="font-semibold text-textPrimary">
-              Want your job finished to this standard – and properly documented?
+        <div className="mt-7 flex flex-col gap-3 rounded-2xl border border-dashed border-surfaceMuted/80 bg-surface/80 px-4 py-4 text-[11px] text-textMuted sm:flex-row sm:items-center sm:justify-between sm:px-5 sm:text-[12px]">
+          <div className="max-w-xl">
+            <p className="font-semibold text-textPrimary sm:text-[13px]">
+              Want your job finished – and documented – to this standard?
             </p>
-            <p>
-              For landlords, agents and careful homeowners, before-and-after
-              photos can be included as part of the handover so you always have
-              a clear record of what was done.
+            <p className="mt-1">
+              For landlords, agents and careful homeowners, LDNFIX can supply
+              before-and-after photos as part of handover, so you always have a
+              clear record of what was fixed and how it was left.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-4 py-2 text-[11px] font-semibold text-background shadow-soft hover:bg-yellow-400"
+              className="inline-flex items-center justify-center rounded-full bg-accent px-4 py-2 text-[11px] font-semibold text-background shadow-soft transition hover:-translate-y-[1px] hover:bg-yellow-400 sm:text-[12px]"
               data-event="work-contact"
             >
               📅 Book my quote
@@ -131,14 +173,14 @@ export default function WorkShowcase() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-accent bg-background px-4 py-2 text-[11px] font-semibold text-accent hover:bg-accent hover:text-background"
+              className="inline-flex items-center justify-center rounded-full border border-accent bg-background px-4 py-2 text-[11px] font-semibold text-accent shadow-soft transition hover:-translate-y-[1px] hover:bg-accent hover:text-background sm:text-[12px]"
               data-event="work-whatsapp"
             >
-              📸 Send photos on WhatsApp
+              📸 Send job photos on WhatsApp
             </a>
             <a
               href={`tel:${PHONE_TEL}`}
-              className="inline-flex items-center justify-center rounded-full border border-surfaceMuted bg-background px-4 py-2 text-[11px] font-semibold text-textPrimary hover:border-accent hover:text-accent"
+              className="inline-flex items-center justify-center rounded-full border border-surfaceMuted bg-background px-4 py-2 text-[11px] font-semibold text-textPrimary shadow-soft transition hover:-translate-y-[1px] hover:border-accent hover:text-accent sm:text-[12px]"
               data-event="work-call"
             >
               📞 Call {PHONE_DISPLAY}
