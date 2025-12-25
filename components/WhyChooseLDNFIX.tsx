@@ -1,114 +1,132 @@
 // components/WhyChooseLDNFIX.tsx
-import Link from "next/link";
-import { PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL } from "@/lib/siteConfig";
-
-const points = [
-  {
-    title: "15+ years on real jobs",
-    body: "Not just a handyman. Full builds, refurbs, roofs and detailed repairs across London homes and rentals.",
-  },
-  {
-    title: "From drawings to completion",
-    body: "Quotes and decisions made by someone who understands structure, sequencing and how trades fit together.",
-  },
-  {
-    title: "One contact, many trades",
-    body: "Roofers, plasterers, brickies, decorators and vetted specialists – managed under one point of contact.",
-  },
-  {
-    title: "Built for London life",
-    body: "Work planned around tenants, key collections, Airbnb changeovers and busy weekday diaries.",
-  },
-  {
-    title: "No cowboys, no lead-gen",
-    body: "You’re not being sold on by a call centre. You deal directly with the person who will manage your job.",
-  },
-  {
-    title: "Straight-talking advice",
-    body: "Honest guidance on repair vs replacement, what can wait and what needs doing now.",
-  },
-];
 
 export default function WhyChooseLDNFIX() {
   return (
     <section
-      id="why"
+      id="why-ldnfix"
       className="border-t border-surfaceMuted/60 bg-background py-10 sm:py-14 lg:py-16"
-      aria-labelledby="why-heading"
+      aria-labelledby="why-ldnfix-heading"
     >
       <div className="section-wrapper">
-        {/* Heading copy */}
+        {/* Heading */}
         <header className="mb-6 max-w-3xl sm:mb-8">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
-            Why people book LDNFIX again
+            Why choose LDNFIX
           </p>
           <h2
-            id="why-heading"
-            className="mt-1 text-xl font-semibold tracking-tight sm:text-2xl lg:text-[26px]"
+            id="why-ldnfix-heading"
+            className="mt-1 text-xl font-semibold tracking-tight sm:text-2xl"
           >
-            A construction-led way to get things fixed – not another “man with a van”.
+            Construction-led, not call-centre led.
           </h2>
           <p className="mt-2 text-sm text-textMuted">
-            LDNFIX is built around someone who has actually done the work – plastering, roofing,
-            brickwork, refurbs and more. That means better diagnosis, better sequencing and fewer
-            nasty surprises halfway through the job.
+            LDNFIX is built on real construction experience, not sales scripts.
+            Every job is scoped by someone who has actually done the work – so
+            you get straight talking advice, sensible options and work that
+            lasts in London homes and flats.
           </p>
         </header>
 
-        {/* Points grid */}
+        {/* Trust bullets */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {points.map((point) => (
-            <article
-              key={point.title}
-              className="rounded-2xl border border-surfaceMuted bg-surface p-4 shadow-soft transition hover:border-accent/60 hover:shadow-md"
-            >
-              <h3 className="mb-1 flex items-center gap-2 text-sm font-semibold text-textPrimary">
-                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-accent/40 bg-accent/5 text-[11px] text-accent">
-                  ✓
-                </span>
-                {point.title}
+          {/* 1 – 15+ years */}
+          <article className="flex gap-3 rounded-2xl border border-surfaceMuted bg-surface p-4 shadow-soft">
+            <div className="flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-surfaceMuted text-lg">
+              <span aria-hidden="true">⏱️</span>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-textPrimary">
+                15+ years hands-on construction across London
               </h3>
-              <p className="text-xs text-textMuted">{point.body}</p>
-            </article>
-          ))}
-        </div>
+              <p className="mt-1 text-xs text-textMuted">
+                Quotes and plans are based on{" "}
+                <span className="font-medium text-textPrimary">
+                  real site experience
+                </span>{" "}
+                – from roofs and plaster to refurbs – not guesswork from behind
+                a laptop.
+              </p>
+            </div>
+          </article>
 
-        {/* CTA strip under grid */}
-        <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-dashed border-surfaceMuted/80 bg-surface/60 px-4 py-3 text-xs text-textMuted sm:flex-row sm:items-center sm:justify-between sm:px-5">
-          <div>
-            <p className="font-semibold text-textPrimary">
-              Ready to stop guessing which trade you need?
-            </p>
-            <p className="text-[11px] sm:text-[12px]">
-              Send photos and a quick description. You&apos;ll get a straight answer on what needs
-              doing – roof, plaster, brickwork or a bigger plan.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-4 py-2 text-[11px] font-semibold text-background shadow-soft transition hover:bg-yellow-400"
-              data-event="why-whatsapp"
-            >
-              📸 WhatsApp job photos
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center rounded-full border border-accent/70 bg-background px-4 py-2 text-[11px] font-semibold text-accent hover:bg-accent hover:text-background"
-              data-event="why-contact"
-            >
-              📅 Book a quote
-            </a>
-            <a
-              href={`tel:${PHONE_TEL}`}
-              className="inline-flex items-center justify-center rounded-full border border-surfaceMuted bg-background px-4 py-2 text-[11px] font-semibold text-textPrimary hover:border-accent hover:text-accent"
-              data-event="why-call"
-            >
-              📞 Call {PHONE_DISPLAY}
-            </a>
-          </div>
+          {/* 2 – Ground up */}
+          <article className="flex gap-3 rounded-2xl border border-surfaceMuted bg-surface p-4 shadow-soft">
+            <div className="flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-surfaceMuted text-lg">
+              <span aria-hidden="true">🏗️</span>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-textPrimary">
+                Built from ground up — not just repairs
+              </h3>
+              <p className="mt-1 text-xs text-textMuted">
+                LDNFIX understands{" "}
+                <span className="font-medium text-textPrimary">
+                  how a whole house goes together
+                </span>{" "}
+                – structure, envelope and finishes – so fixes work with your
+                property, not against it.
+              </p>
+            </div>
+          </article>
+
+          {/* 3 – Insured & trustworthy */}
+          <article className="flex gap-3 rounded-2xl border border-surfaceMuted bg-surface p-4 shadow-soft">
+            <div className="flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-surfaceMuted text-lg">
+              <span aria-hidden="true">✅</span>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-textPrimary">
+                Fully insured & trustworthy professionals
+              </h3>
+              <p className="mt-1 text-xs text-textMuted">
+                Work is carried out by{" "}
+                <span className="font-medium text-textPrimary">
+                  vetted trades under one standard
+                </span>{" "}
+                – with LDNFIX responsible for quality, safety and tidy finishes.
+              </p>
+            </div>
+          </article>
+
+          {/* 4 – Fast quotes & reliable scheduling */}
+          <article className="flex gap-3 rounded-2xl border border-surfaceMuted bg-surface p-4 shadow-soft">
+            <div className="flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-surfaceMuted text-lg">
+              <span aria-hidden="true">⚡</span>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-textPrimary">
+                Fast quotes & reliable scheduling
+              </h3>
+              <p className="mt-1 text-xs text-textMuted">
+                Send photos, get{" "}
+                <span className="font-medium text-textPrimary">
+                  a clear plan and price quickly
+                </span>
+                , then know exactly when trades are turning up and what happens
+                next.
+              </p>
+            </div>
+          </article>
+
+          {/* 5 – Clear communication */}
+          <article className="flex gap-3 rounded-2xl border border-surfaceMuted bg-surface p-4 shadow-soft sm:col-span-2 lg:col-span-1">
+            <div className="flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-surfaceMuted text-lg">
+              <span aria-hidden="true">📞</span>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-textPrimary">
+                Clear communication from quote to finish
+              </h3>
+              <p className="mt-1 text-xs text-textMuted">
+                One point of contact on{" "}
+                <span className="font-medium text-textPrimary">
+                  phone, WhatsApp and email
+                </span>{" "}
+                – so you&apos;re never guessing what&apos;s happening with your
+                job or who to chase.
+              </p>
+            </div>
+          </article>
         </div>
       </div>
     </section>

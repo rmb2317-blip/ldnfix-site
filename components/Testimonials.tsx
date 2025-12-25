@@ -1,30 +1,26 @@
 // components/Testimonials.tsx
-import { PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL } from "@/lib/siteConfig";
 
 const testimonials = [
   {
+    name: "Sarah",
+    borough: "Hackney",
+    job: "Roof repair & plastering",
     quote:
-      "Rear room refurb and plastering in Islington. Turned up when agreed, kept the place tidy and the finish was spot on – ready for paint straight away.",
-    name: "James, Islington",
-    job: "Rear room refurb & plastering",
+      "LDNFIX found the source of a long-term leak, sorted the tiles and made good the ceiling. Clear pricing, turned up when promised and left everything tidy.",
   },
   {
+    name: "James",
+    borough: "Islington",
+    job: "Flat refurb & decorating",
     quote:
-      "Flat fully repainted and made good between tenants in Enfield. Clear photos before and after so I could sign it off without travelling.",
-    name: "Sarah, Enfield",
-    job: "End-of-tenancy make-good & decorating",
+      "From making good old plaster to repainting the whole flat, the finish was miles better than what we had before. Communication was solid all the way through.",
   },
   {
+    name: "Aisha",
+    borough: "Enfield",
+    job: "End of tenancy repairs",
     quote:
-      "Leak traced back to a roof detail, then ceiling and walls repaired and decorated. One point of contact from first visit to the last coat of paint.",
-    name: "Amir, Hackney",
-    job: "Roof leak, plastering & decorating",
-  },
-  {
-    quote:
-      "Multiple small repairs across a few rentals – doors, locks, patches and paint. Quoted clearly, grouped sensibly and invoiced the way my accountant likes.",
-    name: "Louise, North London",
-    job: "Ongoing repairs & maintenance",
+      "Minor brickwork, filling, painting and a few awkward fixes all handled in one go. Ideal as a landlord – one point of contact and the place was ready to re-let.",
   },
 ];
 
@@ -36,75 +32,62 @@ export default function Testimonials() {
       aria-labelledby="testimonials-heading"
     >
       <div className="section-wrapper">
+        {/* Heading */}
         <header className="mb-6 max-w-3xl sm:mb-8">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
-            Recent feedback
+            Reviews
           </p>
           <h2
             id="testimonials-heading"
-            className="mt-1 text-xl font-semibold tracking-tight sm:text-2xl lg:text-[26px]"
+            className="mt-1 text-xl font-semibold tracking-tight sm:text-2xl"
           >
-            London homeowners, landlords and agents who use LDNFIX more than once.
+            Trusted by London homeowners &amp; landlords.
           </h2>
           <p className="mt-2 text-sm text-textMuted">
-            The common thread: jobs scoped properly, finished properly and looked after properly –
-            so you&apos;re not hunting a new tradesperson for every job.
+            Most LDNFIX work comes from referrals and repeat clients. Here&apos;s
+            what people say after leaks are fixed, walls are made good and
+            properties are brought back up to standard.
           </p>
         </header>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Testimonials grid */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((t) => (
-            <figure
-              key={t.name + t.job}
-              className="flex h-full flex-col rounded-2xl border border-surfaceMuted bg-surface p-4 text-sm shadow-soft"
+            <article
+              key={`${t.name}-${t.borough}-${t.job}`}
+              className="flex h-full flex-col rounded-2xl border border-surfaceMuted bg-surface p-4 shadow-soft"
             >
-              <p className="mb-3 text-xs text-textMuted">&ldquo;{t.quote}&rdquo;</p>
-              <figcaption className="mt-auto text-[11px] font-semibold text-textPrimary">
-                {t.name}
-                <span className="block text-[11px] font-normal text-textMuted">
-                  {t.job}
+              {/* Rating */}
+              <div
+                className="mb-2 flex items-center gap-1 text-xs font-semibold text-yellow-400"
+                aria-label="5 out of 5 stars"
+                role="img"
+              >
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span className="ml-1 text-[11px] uppercase tracking-[0.14em] text-textMuted">
+                  Rated 5/5
                 </span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+              </div>
 
-        {/* CTA under testimonials */}
-        <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-dashed border-surfaceMuted/80 bg-surface/60 px-4 py-3 text-[11px] text-textMuted sm:flex-row sm:items-center sm:justify-between sm:px-5">
-          <div>
-            <p className="font-semibold text-textPrimary">
-              Want your next job to feel this straightforward?
-            </p>
-            <p>
-              Whether it&apos;s a single leak, a room refurb or ongoing landlord work, the process
-              is the same – clear quote, clear plan, tidy finish.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-4 py-2 text-[11px] font-semibold text-background shadow-soft hover:bg-yellow-400"
-              data-event="testimonials-contact"
-            >
-              📅 Book my quote
-            </a>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-accent bg-background px-4 py-2 text-[11px] font-semibold text-accent hover:bg-accent hover:text-background"
-              data-event="testimonials-whatsapp"
-            >
-              📸 Send photos on WhatsApp
-            </a>
-            <a
-              href={`tel:${PHONE_TEL}`}
-              className="inline-flex items-center justify-center rounded-full border border-surfaceMuted bg-background px-4 py-2 text-[11px] font-semibold text-textPrimary hover:border-accent hover:text-accent"
-              data-event="testimonials-call"
-            >
-              📞 Call {PHONE_DISPLAY}
-            </a>
-          </div>
+              {/* Quote */}
+              <p className="text-xs text-textMuted sm:text-sm">&ldquo;{t.quote}&rdquo;</p>
+
+              {/* Meta */}
+              <div className="mt-4 border-t border-surfaceMuted pt-3 text-[11px] text-textMuted">
+                <p className="font-semibold text-textPrimary">
+                  {t.name}
+                  <span className="ml-1 text-textMuted">· {t.job}</span>
+                </p>
+                <p className="mt-0.5 text-[11px] text-textMuted">
+                  {t.borough}, Greater London
+                </p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

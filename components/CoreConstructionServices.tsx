@@ -1,80 +1,61 @@
 // components/CoreConstructionServices.tsx
-import Link from "next/link";
 
-type CoreService = {
-  id: string;
-  title: string;
-  href?: string;
-  short: string;
-  points: string[];
-};
+const coreServices = [
+  {
+    id: "roofing-guttering",
+    icon: "🏠",
+    name: "Roofing & guttering",
+    description:
+      "Leak tracing, tile replacement and gutter issues handled by someone who understands the whole structure – not just the roof in isolation.",
+    localPhrase: "Roofing & repairs London – flat roofs, tiles, leaks and gutters.",
+  },
+  {
+    id: "plastering-rendering",
+    icon: "🧱",
+    name: "Plastering & rendering",
+    description:
+      "From small patches after a leak to full re-skim and external rendering – smooth, straight walls ready for paint or sale.",
+    localPhrase: "Plastering & rendering across Greater London homes and flats.",
+  },
+  {
+    id: "brickwork-garden-walls",
+    icon: "🧱",
+    name: "Brickwork & garden walls",
+    description:
+      "Repairs, rebuilds and small structural jobs – piers, walls, steps and make-safe work that respects the building as a whole.",
+    localPhrase: "Brickwork repairs and garden walls for London properties.",
+  },
+  {
+    id: "painting-decorating",
+    icon: "🎨",
+    name: "Painting & decorating",
+    description:
+      "Ceilings, walls, woodwork and external elements brought back to life – ideal after plastering, repairs or refurbs.",
+    localPhrase: "Painting & decorating London – from refreshes to full room redecoration.",
+  },
+  {
+    id: "end-of-tenancy",
+    icon: "🚪",
+    name: "End of tenancy repairs",
+    description:
+      "Fast turnarounds for landlords and agents – making good damage, fixing snags and getting properties ready for new tenants.",
+    localPhrase: "End of tenancy repairs across London for landlords and agents.",
+  },
+  {
+    id: "general-repairs",
+    icon: "🔧",
+    name: "General repairs & maintenance",
+    description:
+      "Day-to-day fixes that keep homes and portfolios in good shape – from minor leaks and broken fittings to make-good after other trades.",
+    localPhrase: "General property repairs & maintenance across Greater London.",
+  },
+];
 
-const coreServices: CoreService[] = [
-  {
-    id: "roofing",
-    title: "Roofing & guttering",
-    href: "/roofing-guttering",
-    short:
-      "Leaks, tiles, flat roofs and rainwater issues – scoped with the rest of the building in mind.",
-    points: [
-      "Tracing where water is really coming from, not just where it shows inside.",
-      "Tile and slate replacement, localised repairs through to full re-roof projects.",
-      "Flat roofs (felt, GRP and more) with details around walls, chimneys and abutments done properly.",
-      "Gutters, downpipes and outlets cleared, corrected and made to actually fall the right way.",
-    ],
-  },
-  {
-    id: "plastering",
-    title: "Plastering & rendering",
-    href: "/plastering-rendering",
-    short:
-      "From making good around small repairs to full room or whole-property skims.",
-    points: [
-      "Ceilings, stairwells and problem walls taken back and brought up to a proper finish.",
-      "Blown, cracked or historic plaster made good in a way that respects the rest of the fabric.",
-      "Internal and external rendering tied into existing work so the building still reads as one.",
-      "Surfaces left ready for decorators – often the same person managing both stages.",
-    ],
-  },
-  {
-    id: "brickwork",
-    title: "Brickwork, walls & structure",
-    href: "/brickwork-structural",
-    short:
-      "Walls, piers and small structural elements repaired or rebuilt with an eye on the whole property.",
-    points: [
-      "Garden walls rebuilt, raised or re-faced when they&apos;re beyond another patch.",
-      "Localised structural repairs, lintels and small openings handled with care for what they carry.",
-      "Repointing where it actually adds value, not just for the sake of it.",
-      "Porches, small extensions and infill work coordinated with roof, drainage and finishes.",
-    ],
-  },
-  {
-    id: "repairs",
-    title: "Property repairs & maintenance",
-    href: "/repairs-maintenance",
-    short:
-      "The kind of day-to-day issues that don&apos;t need a big firm – just someone competent and organised.",
-    points: [
-      "Snagging and making good after other trades or previous work.",
-      "Minor carpentry, doors, floors and joinery that need adjusting, repairing or refitting.",
-      "End-of-tenancy repairs and light refreshes to get lets market-ready again.",
-      "Ongoing maintenance plans for landlords and agents with multiple properties.",
-    ],
-  },
-  {
-    id: "refurbs",
-    title: "Refurbs & makeovers",
-    href: "/refurbishments",
-    short:
-      "Room-by-room or whole-property improvements managed like a small building project, not a series of odd jobs.",
-    points: [
-      "Kitchens, bathrooms and living spaces reworked with structure, services and finishes planned together.",
-      "Phased refurb work around people still living in the property.",
-      "Simple, honest advice on where to spend for impact – and where to hold back.",
-      "All trades coordinated so the job moves forward every time someone is on site.",
-    ],
-  },
+const specialistTrades = [
+  "Plumbing",
+  "Electrical",
+  "Heating & gas",
+  "Bathroom & kitchen fit-outs",
 ];
 
 export default function CoreConstructionServices() {
@@ -82,82 +63,102 @@ export default function CoreConstructionServices() {
     <section
       id="services"
       className="border-t border-surfaceMuted/60 bg-background py-10 sm:py-14 lg:py-16"
-      aria-labelledby="core-services-heading"
+      aria-labelledby="services-heading"
     >
       <div className="section-wrapper">
+        {/* Heading */}
         <header className="mb-6 flex flex-col gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
               Core construction services
             </p>
             <h2
-              id="core-services-heading"
+              id="services-heading"
               className="text-xl font-semibold tracking-tight sm:text-2xl"
             >
-              The work LDNFIX is built on.
+              Construction-led fixes and refurbs, not guesswork.
             </h2>
             <p className="mt-2 max-w-2xl text-sm text-textMuted">
-              Roofing, plastering, brickwork, refurbs and day-to-day repairs –
-              all scoped by someone who understands how each trade affects the
-              next. You&apos;re not getting five disconnected quotes; you&apos;re
-              getting one joined-up plan.
-            </p>
-          </div>
-
-          <div className="text-xs text-textMuted sm:text-[11px]">
-            <p className="font-semibold text-textPrimary">
-              Typical jobs across North, East & the M25 belt
-            </p>
-            <p>
-              Enfield, Barnet, Haringey, Islington, Hackney, Waltham Forest and
-              beyond – especially where previous work hasn&apos;t quite held up.
+              From roof leaks and cracked plaster to end of tenancy repairs,
+              LDNFIX brings{" "}
+              <span className="font-medium text-textPrimary">
+                15+ years of real construction experience
+              </span>{" "}
+              to London homes and flats. Jobs are scoped with the whole
+              property in mind – structure, finishes and future plans – not just
+              the quickest patch.
             </p>
           </div>
         </header>
 
+        {/* Core services grid */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {coreServices.map((service) => {
-            const Wrapper: React.ElementType = service.href ? Link : "div";
-            const wrapperProps = service.href
-              ? {
-                  href: service.href,
-                  "data-event": `core-service-link-${service.id}`,
-                }
-              : {};
-
-            return (
-              <Wrapper
-                key={service.id}
-                {...wrapperProps}
-                className="group flex h-full flex-col rounded-2xl border border-surfaceMuted bg-surface p-4 text-left shadow-soft transition hover:border-accent/70 hover:shadow-md"
-              >
-                <header className="mb-2">
+          {coreServices.map((service) => (
+            <article
+              key={service.id}
+              className="group flex flex-col rounded-2xl border border-surfaceMuted bg-surface p-4 text-left shadow-soft transition hover:border-accent/70 hover:shadow-md"
+            >
+              <div className="mb-3 flex items-start gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-surfaceMuted text-lg">
+                  <span aria-hidden="true">{service.icon}</span>
+                </div>
+                <div>
                   <h3 className="text-sm font-semibold text-textPrimary">
-                    {service.title}
+                    {service.name}
                   </h3>
                   <p className="mt-1 text-xs text-textMuted">
-                    {service.short}
+                    {service.description}
                   </p>
-                </header>
+                </div>
+              </div>
 
-                <ul className="mb-3 flex-1 space-y-1.5 text-[11px] text-textMuted">
-                  {service.points.map((point) => (
-                    <li key={point} className="flex gap-1">
-                      <span className="mt-[3px] h-[3px] w-[3px] rounded-full bg-accent/80" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
+              <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.16em] text-textMuted">
+                {service.localPhrase}
+              </p>
 
-                <span className="mt-auto inline-flex items-center text-[11px] font-semibold text-accent">
-                  {service.href ? "View this service" : "Discuss this work"}
+              <div className="mt-auto pt-1">
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center rounded-full bg-accent px-3.5 py-1.5 text-[11px] font-semibold text-background shadow-soft transition hover:bg-yellow-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                  aria-label={`Enquire about ${service.name} with LDNFIX`}
+                  data-event="service-cta-click"
+                  data-service={service.name}
+                >
+                  Send details for a quote
                   <span className="ml-1 transition group-hover:translate-x-0.5">
                     →
                   </span>
-                </span>
-              </Wrapper>
-            );
-          })}
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {/* Specialist trades (managed) */}
+        <div className="mt-8 rounded-2xl border border-dashed border-surfaceMuted/80 bg-surface px-4 py-4 sm:px-5 sm:py-5">
+          <h3 className="mb-1 text-sm font-semibold text-textPrimary">
+            Specialist trades (managed for you)
+          </h3>
+          <p className="mb-3 text-xs text-textMuted sm:text-[13px]">
+            Plumbing, electrics, heating, gas and full bathroom or kitchen
+            refits are handled by{" "}
+            <span className="font-medium text-textPrimary">
+              qualified, trusted specialists
+            </span>{" "}
+            that LDNFIX has worked with on real projects across London. You get
+            one point of contact, one plan and one standard of workmanship –
+            everything is surveyed, priced and managed for you.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {specialistTrades.map((trade) => (
+              <span
+                key={trade}
+                className="inline-flex items-center rounded-full border border-surfaceMuted bg-background px-3 py-1 text-[11px] font-medium text-textMuted"
+              >
+                {trade}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
