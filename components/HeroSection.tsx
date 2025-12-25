@@ -1,97 +1,97 @@
 // components/HeroSection.tsx
-
 export default function HeroSection() {
   return (
     <section
-      id="hero"
-      className="border-b border-surfaceMuted/60 bg-gradient-to-b from-background to-background/95"
+      id="top"
+      className="relative overflow-hidden bg-gradient-to-b from-black via-slate-900 to-black text-white"
       aria-labelledby="hero-heading"
     >
-      <div className="section-wrapper py-10 sm:py-14 lg:py-16">
-        <div className="max-w-3xl">
-          {/* Eyebrow / intro line */}
+      {/* Background image */}
+      <div
+        className="pointer-events-none absolute inset-0 bg-[url('/images/hero-repairs-london.jpg')] bg-cover bg-center opacity-20 blur-sm"
+        aria-hidden="true"
+      />
+      {/* Dark overlay to keep text readable */}
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/60"
+        aria-hidden="true"
+      />
+
+      <div className="relative mx-auto flex max-w-5xl flex-col gap-6 px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <header className="max-w-3xl">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-accent">
-            London multi-trade repairs & refurbs
+            Fixing London. Properly.
           </p>
 
-          {/* Main headline */}
           <h1
             id="hero-heading"
-            className="mb-3 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[2.6rem] lg:leading-[1.1]"
+            className="text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl"
           >
-            Roof leaks? Cracked plaster? Get it{" "}
-            <span className="underline underline-offset-4 decoration-accent">
-              fixed properly
-            </span>{" "}
-            across Greater London.
+            Roof leaking? Plaster cracking?{" "}
+            <span className="text-accent">
+              Get your home fixed properly across Greater London.
+            </span>
           </h1>
 
-          {/* Subheadline */}
-          <p className="mb-5 text-sm text-textMuted sm:text-base">
-            LDNFIX is run by a builder with{" "}
-            <strong className="font-semibold text-textPrimary">
-              15+ years of hands-on construction experience
-            </strong>{" "}
-            – from full refurbs and re-roofs to day-to-day repairs. One point of
-            contact managing{" "}
-            <span className="font-medium text-textPrimary">
-              roofs, plaster, brickwork and make-good work across London
-            </span>{" "}
-            and within the M25. No call centre, no cowboys, no guesswork.
+          <p className="mt-4 text-sm text-textMuted sm:text-base">
+            15+ years on real construction jobs – from full re-roofs and
+            plastering whole houses to structural repairs and refurbs. LDNFIX
+            handles the work the right way, with one point of contact and no
+            cowboys, anywhere in London.
           </p>
+        </header>
 
-          {/* Secondary benefit line with extra keywords */}
-          <p className="mb-6 text-xs text-textMuted sm:text-sm">
-            Ideal for{" "}
-            <span className="font-medium text-textPrimary">
-              London homeowners, landlords and agents
-            </span>{" "}
-            who need reliable{" "}
-            <span className="font-medium text-textPrimary">
-              roof repairs, plaster repairs, structural fixes and general
-              property maintenance
-            </span>{" "}
-            done properly, not patched.
-          </p>
+        {/* CTA buttons */}
+        <div
+          className="flex flex-wrap gap-3"
+          aria-label="Primary actions to get a quote, call or message LDNFIX"
+        >
+          <a
+            href="#contact"
+            aria-label="Book a quote with LDNFIX"
+            className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-black shadow-soft transition hover:-translate-y-[1px] hover:bg-yellow-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          >
+            📅 Book a quote
+          </a>
 
-          {/* CTA buttons */}
-          <div className="flex flex-wrap gap-3 sm:gap-4">
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-background shadow-soft transition hover:bg-yellow-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              aria-label="Book a quote with LDNFIX and scroll to the contact form"
-              data-event="hero-cta-book-quote"
-            >
-              📅 Book a quote
-            </a>
+          <a
+            href="tel:02036338772"
+            aria-label="Call LDNFIX now on 020 3633 8772"
+            className="inline-flex items-center justify-center rounded-full border border-accent/80 bg-black/40 px-6 py-3 text-sm font-semibold text-accent shadow-soft transition hover:-translate-y-[1px] hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          >
+            📞 Call now
+            <span className="ml-2 hidden text-[13px] font-normal sm:inline">
+              020 3633 8772
+            </span>
+          </a>
 
-            <a
-              href="tel:02036338772"
-              className="inline-flex items-center justify-center rounded-full border border-surfaceMuted bg-surface px-5 py-2.5 text-sm font-semibold text-textPrimary shadow-soft transition hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              aria-label="Call LDNFIX now on 020 3633 8772"
-              data-event="hero-cta-call"
-            >
-              📞 Call 020 3633 8772
-            </a>
+          <a
+            href="https://wa.me/442036338772"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open WhatsApp chat with LDNFIX"
+            className="inline-flex items-center justify-center rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-[1px] hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          >
+            💬 WhatsApp us
+          </a>
+        </div>
 
-            <a
-              href="https://wa.me/442036338772"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-accent/70 bg-surface px-5 py-2.5 text-sm font-semibold text-accent shadow-soft transition hover:bg-accent hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              aria-label="Open WhatsApp chat with LDNFIX to send job photos"
-              data-event="hero-cta-whatsapp"
-            >
-              💬 WhatsApp us photos
-            </a>
+        {/* Trust row */}
+        <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-textMuted sm:text-[13px]">
+          <div className="flex items-center gap-2">
+            <span aria-hidden="true">⭐️⭐️⭐️⭐️⭐️</span>
+            <span>Rated &amp; recommended by London homeowners</span>
           </div>
-
-          {/* Micro trust line */}
-          <p className="mt-4 text-[11px] text-textMuted">
-            Send photos, a quick description and your postcode – you&apos;ll get
-            a straight answer and a clear plan for your roof, plaster or repair
-            work anywhere in Greater London.
-          </p>
+          <div className="h-3 w-px bg-slate-700 hidden sm:block" aria-hidden="true" />
+          <div className="flex items-center gap-2">
+            <span aria-hidden="true">🛡️</span>
+            <span>Fully insured, construction-led multi-trade service</span>
+          </div>
+          <div className="h-3 w-px bg-slate-700 hidden sm:block" aria-hidden="true" />
+          <div className="flex items-center gap-2">
+            <span aria-hidden="true">📍</span>
+            <span>Working across Enfield, North, East &amp; Greater London</span>
+          </div>
         </div>
       </div>
     </section>

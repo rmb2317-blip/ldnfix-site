@@ -2,7 +2,6 @@
 import HeroSection from "@/components/HeroSection";
 import WhyChooseLDNFIX from "@/components/WhyChooseLDNFIX";
 import CoreConstructionServices from "@/components/CoreConstructionServices";
-import SpecialistTradesNetwork from "@/components/SpecialistTradesNetwork";
 import FounderExperienceSection from "@/components/FounderExperienceSection";
 import Testimonials from "@/components/Testimonials";
 import BeforeAfterGallery from "@/components/BeforeAfterGallery";
@@ -26,7 +25,7 @@ export default function HomePage() {
         <HeroSection />
         <WhyChooseLDNFIX />
         <CoreConstructionServices />
-        <SpecialistTradesNetwork />
+      
         <FounderExperienceSection />
         <Testimonials />
         {/* Before/after proof gallery */}
