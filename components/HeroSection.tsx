@@ -1,136 +1,72 @@
 // components/HeroSection.tsx
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import {
-  BUSINESS_TAGLINE,
-  PHONE_DISPLAY,
-  PHONE_TEL,
-  WHATSAPP_URL,
-} from "@/lib/siteConfig";
-
-type PersonaId = "homeowner" | "landlord" | "agent" | "contractor";
-
-const PERSONAS: {
-  id: PersonaId;
-  label: string;
-  line: string;
-}[] = [
-  {
-    id: "homeowner",
-    label: "Homeowner",
-    line: "Need a reliable tradesman who actually turns up, explains the options and treats your home with respect.",
-  },
-  {
-    id: "landlord",
-    label: "Landlord",
-    line: "Repairs handled quickly around tenants with clear photos, invoices and communication – no chasing.",
-  },
-  {
-    id: "agent",
-    label: "agent",
-    line: "A single point of contact for multiple properties – ideal for Enfield and North London lettings teams.",
-  },
-  {
-    id: "contractor",
-    label: "Contractor / Builder",
-    line: "Need a dependable multi-trade to slot into your jobs for plastering, making good and remedial work.",
-  },
-];
+import { PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL } from "@/lib/siteConfig";
 
 export default function HeroSection() {
-  const [activePersona, setActivePersona] = useState<PersonaId>("homeowner");
-  const persona = PERSONAS.find((p) => p.id === activePersona) ?? PERSONAS[0];
-
   return (
-    <header
-      id="hero"
-      className="border-b border-surfaceMuted/60 bg-gradient-to-b from-surface to-background"
+    <section
+      className="border-b border-surfaceMuted/60 bg-background pt-10 pb-8 sm:pt-12 sm:pb-10 lg:pt-16 lg:pb-14"
       aria-labelledby="hero-heading"
     >
-      <div className="section-wrapper grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:py-20">
-        {/* Left column – copy + CTAs */}
+      <div className="section-wrapper grid gap-8 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] lg:items-center">
+        {/* LEFT – main story & CTAs */}
         <div>
-          {/* trust strip */}
-          <div className="mb-3 flex flex-wrap gap-2 text-[11px] text-textMuted">
-            <span className="rounded-full border border-surfaceMuted bg-background/80 px-3 py-1">
-              Based in <span className="font-semibold">Enfield</span> · North &
-              East London
-            </span>
-            <span className="rounded-full border border-surfaceMuted bg-background/80 px-3 py-1">
-              15+ years construction experience
-            </span>
-            <span className="rounded-full border border-surfaceMuted bg-background/80 px-3 py-1">
-              Construction-led · No lead-selling
-            </span>
-          </div>
-
-          <p className="mb-3 inline-flex items-center rounded-full border border-accentSoft/40 bg-accentSoft/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
-            LDNFIX · {BUSINESS_TAGLINE}
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-accent">
+            Multi-trade, construction-led fixes across London
           </p>
 
           <h1
             id="hero-heading"
-            className="mb-3 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl"
+            className="mb-3 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-[2.5rem]"
           >
-            Fixing London. <span className="text-accent">Properly.</span>
+            Fixing London.{" "}
+          <span className="whitespace-nowrap">Properly.</span>
           </h1>
 
-          <p className="mb-3 max-w-xl text-base text-textMuted sm:text-lg">
-            15+ years on real construction sites – from full builds and
-            refurbishments to detailed repairs. LDNFIX gives you a
-            construction-led way to get jobs surveyed, priced and finished
-            properly the first time.
+          {/* Trust strip */}
+          <div className="mb-3 flex flex-wrap gap-2 text-[11px] text-textMuted">
+            <span className="inline-flex items-center rounded-full bg-surface px-2.5 py-1 font-medium">
+              <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+              15+ years on real builds – not just small jobs
+            </span>
+            <span className="inline-flex items-center rounded-full bg-surface px-2.5 py-1 font-medium">
+              🧱 Construction-led, not a lead-selling site
+            </span>
+            <span className="inline-flex items-center rounded-full bg-surface px-2.5 py-1 font-medium">
+              🚫 No cowboys, no call centre, no guesswork
+            </span>
+          </div>
+
+          <p className="mb-3 text-sm font-medium text-accent sm:text-base">
+            Roof leaking, plaster cracking or a room that needs stripping back
+            and doing properly? Whether it&apos;s one urgent fix or a full
+            refurb, you get someone who understands the entire build – structure,
+            fabric and finishes – not just one small piece of it.
           </p>
 
-          {/* Persona selector */}
-          <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-textMuted">
-            I&apos;m a…
-          </div>
-          <div className="mb-3 flex flex-wrap gap-2">
-            {PERSONAS.map((p) => {
-              const isActive = p.id === activePersona;
-              return (
-                <button
-                  key={p.id}
-                  type="button"
-                  onClick={() => setActivePersona(p.id)}
-                  className={[
-                    "rounded-full border px-3 py-1 text-[11px] font-medium transition",
-                    isActive
-                      ? "border-accent bg-accent text-background"
-                      : "border-surfaceMuted bg-surface text-textMuted hover:border-accent/70 hover:text-accent",
-                  ].join(" ")}
-                  aria-pressed={isActive}
-                >
-                  {p.label}
-                </button>
-              );
-            })}
-          </div>
+          <p className="mb-5 max-w-xl text-sm text-textMuted sm:text-[15px]">
+            LDNFIX is run by a builder who has taken homes from drawings to
+            completion across London. Most work is delivered directly; when
+            specialists are needed, they&apos;re brought in under one plan,
+            one schedule and one point of contact – you.
+          </p>
 
-          {/* Persona-specific supporting line */}
-          <p className="mb-5 max-w-xl text-xs text-textMuted">{persona.line}</p>
-
-          {/* CTAs */}
-          <div className="mb-5 flex flex-wrap gap-3">
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold tracking-wide text-background shadow-soft transition hover:bg-yellow-400"
-              data-event="hero-cta"
-              data-cta="book-quote"
-              data-persona={activePersona}
+          {/* Primary CTAs */}
+          <div className="mb-3 flex flex-wrap gap-3">
+            <Link
+              href="/#contact"
+              className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-background shadow-soft transition hover:bg-yellow-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              data-event="hero-book-quote"
             >
-              📅 Book a quote
-            </a>
+              📅 Book a fast quote
+            </Link>
 
             <a
               href={`tel:${PHONE_TEL}`}
-              className="inline-flex items-center justify-center rounded-full border border-accent/70 bg-surface px-5 py-3 text-sm font-semibold tracking-wide text-accent transition hover:bg-accent hover:text-background"
-              data-event="hero-cta"
-              data-cta="call"
-              data-persona={activePersona}
+              className="inline-flex items-center justify-center rounded-full border border-surfaceMuted bg-surface px-5 py-2.5 text-sm font-semibold text-textPrimary shadow-soft transition hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              data-event="hero-call"
             >
               📞 Call {PHONE_DISPLAY}
             </a>
@@ -139,70 +75,56 @@ export default function HeroSection() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-surfaceMuted bg-surface px-5 py-3 text-sm font-semibold tracking-wide text-textPrimary transition hover:border-accent hover:text-accent"
-              data-event="hero-cta"
-              data-cta="whatsapp"
-              data-persona={activePersona}
+              className="inline-flex items-center justify-center rounded-full border border-emerald-400/60 bg-surface px-5 py-2.5 text-sm font-semibold text-emerald-300 shadow-soft transition hover:border-emerald-300 hover:bg-emerald-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              data-event="hero-whatsapp"
             >
               💬 WhatsApp job photos
             </a>
           </div>
 
-          {/* Quick bullets */}
-          <dl className="grid grid-cols-2 gap-4 text-xs text-textMuted sm:grid-cols-3">
-            <div>
-              <dt className="font-semibold text-textPrimary">
-                Construction-led
-              </dt>
-              <dd>Jobs scoped by someone who has actually built houses.</dd>
-            </div>
-            <div>
-              <dt className="font-semibold text-textPrimary">
-                Multi-trade network
-              </dt>
-              <dd>
-                Trusted roofers, sparkies and plumbers when extra trades are
-                needed.
-              </dd>
-            </div>
-            <div>
-              <dt className="font-semibold text-textPrimary">
-                Built for London life
-              </dt>
-              <dd>Slots around tenants, Airbnb guests and busy diaries.</dd>
-            </div>
-          </dl>
+          <p className="text-[11px] text-textMuted">
+            Send photos, a quick voice note or drawings. You&apos;ll get a
+            straight-talking view of what&apos;s involved, realistic options
+            and where it makes sense to spend – or save – money.
+          </p>
         </div>
 
-        {/* Right column – simple explainer box */}
-        <aside className="relative">
-          <div className="rounded-2xl border border-surfaceMuted bg-surface px-5 py-6 shadow-soft sm:px-6 sm:py-7">
-            <h2 className="mb-2 text-sm font-semibold text-textPrimary">
-              A better way to book trades in London.
-            </h2>
-            <ol className="list-decimal space-y-2 text-xs text-textMuted list-inside">
-              <li>Send job photos and a quick description.</li>
-              <li>
-                Get a straight-talking plan – repair, make good or full refurb.
-              </li>
-              <li>
-                Work carried out by LDNFIX or a vetted specialist, managed
-                end-to-end.
-              </li>
-            </ol>
-            <p className="mt-4 text-[11px] text-textMuted">
-              Ideal for homeowners, landlords, agents and contractors who are
-              tired of no-shows, upsells and guesswork pricing.
+        {/* RIGHT – trust & &quot;who this is for&quot; */}
+        <aside className="space-y-4">
+          <div className="rounded-2xl border border-surfaceMuted bg-surface p-4 shadow-soft sm:p-5">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-textMuted">
+              Best fit for
             </p>
-            <Link
-              href="#services"
-              className="mt-4 inline-flex text-[11px] font-semibold text-accent underline-offset-2 hover:underline"
-            >
-              See what we can help with →
-            </Link>
+            <ul className="space-y-1.5 text-xs text-textMuted">
+              <li>• Homeowners who want work done once, properly.</li>
+              <li>
+                • Landlords and agents needing reliable, multi-trade support
+                for ongoing stock.
+              </li>
+              <li>
+                • Busy people who don&apos;t have time to brief and chase five
+                separate trades.
+              </li>
+              <li>
+                • Projects where previous work has failed and someone needs to
+                take real ownership.
+              </li>
+            </ul>
+          </div>
+
+          <div className="rounded-2xl border border-dashed border-surfaceMuted/70 bg-surface/60 p-4 text-[11px] text-textMuted sm:p-5">
+            <p className="mb-1 font-semibold text-textPrimary">
+              North, East & across the M25 belt.
+            </p>
+            <p>
+              Regularly working in Enfield, Barnet, Haringey, Islington,
+              Hackney, Waltham Forest and surrounding areas. If it&apos;s
+              technically outside the M25 but makes sense, it&apos;s still
+              worth asking.
+            </p>
           </div>
         </aside>
       </div>
-    </header>
+    </section>
   );
 }

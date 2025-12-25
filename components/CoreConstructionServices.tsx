@@ -1,48 +1,79 @@
 // components/CoreConstructionServices.tsx
 import Link from "next/link";
 
-const services = [
+type CoreService = {
+  id: string;
+  title: string;
+  href?: string;
+  short: string;
+  points: string[];
+};
+
+const coreServices: CoreService[] = [
   {
-    slug: "roofing-guttering",
+    id: "roofing",
     title: "Roofing & guttering",
-    tagline: "Leaks, tiles, flat roofs & rainwater management.",
-    description:
-      "From emergency leak tracing and tile replacement to full flat-roof overlays and gutter replacements. We price what’s needed to keep water out – nothing more, nothing less.",
+    href: "/roofing-guttering",
+    short:
+      "Leaks, tiles, flat roofs and rainwater issues – scoped with the rest of the building in mind.",
+    points: [
+      "Tracing where water is really coming from, not just where it shows inside.",
+      "Tile and slate replacement, localised repairs through to full re-roof projects.",
+      "Flat roofs (felt, GRP and more) with details around walls, chimneys and abutments done properly.",
+      "Gutters, downpipes and outlets cleared, corrected and made to actually fall the right way.",
+    ],
   },
   {
-    slug: "plastering-rendering",
+    id: "plastering",
     title: "Plastering & rendering",
-    tagline: "From patch repairs to full rooms and exteriors.",
-    description:
-      "Skimming, bonding, repairs after leaks, external render and making old walls look new again. Started out as a plasterer, so this is a core trade.",
+    href: "/plastering-rendering",
+    short:
+      "From making good around small repairs to full room or whole-property skims.",
+    points: [
+      "Ceilings, stairwells and problem walls taken back and brought up to a proper finish.",
+      "Blown, cracked or historic plaster made good in a way that respects the rest of the fabric.",
+      "Internal and external rendering tied into existing work so the building still reads as one.",
+      "Surfaces left ready for decorators – often the same person managing both stages.",
+    ],
   },
   {
-    slug: "brickwork-structural",
-    title: "Brickwork & structural repairs",
-    tagline: "Cracks, movement, rebuilds and remedial work.",
-    description:
-      "Stitching cracks, rebuilding damaged walls, repointing and sorting long-term structural issues before they become expensive problems.",
+    id: "brickwork",
+    title: "Brickwork, walls & structure",
+    href: "/brickwork-structural",
+    short:
+      "Walls, piers and small structural elements repaired or rebuilt with an eye on the whole property.",
+    points: [
+      "Garden walls rebuilt, raised or re-faced when they&apos;re beyond another patch.",
+      "Localised structural repairs, lintels and small openings handled with care for what they carry.",
+      "Repointing where it actually adds value, not just for the sake of it.",
+      "Porches, small extensions and infill work coordinated with roof, drainage and finishes.",
+    ],
   },
   {
-    slug: "repairs-maintenance",
-    title: "Repairs & maintenance",
-    tagline: "Day-to-day issues handled properly.",
-    description:
-      "Doors that don’t close, damaged ceilings, mould-damaged areas, wear-and-tear and awkward jobs you can’t face organising yourself.",
+    id: "repairs",
+    title: "Property repairs & maintenance",
+    href: "/repairs-maintenance",
+    short:
+      "The kind of day-to-day issues that don&apos;t need a big firm – just someone competent and organised.",
+    points: [
+      "Snagging and making good after other trades or previous work.",
+      "Minor carpentry, doors, floors and joinery that need adjusting, repairing or refitting.",
+      "End-of-tenancy repairs and light refreshes to get lets market-ready again.",
+      "Ongoing maintenance plans for landlords and agents with multiple properties.",
+    ],
   },
   {
-    slug: "refurbishments",
-    title: "Refurbs & multi-trade projects",
-    tagline: "From one room to full home refurbishments.",
-    description:
-      "Coordinated plastering, carpentry, decorating, flooring and more – managed as one project so you’re not juggling multiple trades.",
-  },
-  {
-    slug: "#contact",
-    title: "End of tenancy & pre-sale works",
-    tagline: "Get a property ready for viewings or new tenants.",
-    description:
-      "Rapid tidy-ups, repairs and presentation work so properties are ready for marketing, inventory or handover – ideal for landlords and agents.",
+    id: "refurbs",
+    title: "Refurbs & makeovers",
+    href: "/refurbishments",
+    short:
+      "Room-by-room or whole-property improvements managed like a small building project, not a series of odd jobs.",
+    points: [
+      "Kitchens, bathrooms and living spaces reworked with structure, services and finishes planned together.",
+      "Phased refurb work around people still living in the property.",
+      "Simple, honest advice on where to spend for impact – and where to hold back.",
+      "All trades coordinated so the job moves forward every time someone is on site.",
+    ],
   },
 ];
 
@@ -50,63 +81,81 @@ export default function CoreConstructionServices() {
   return (
     <section
       id="services"
-      aria-labelledby="services-heading"
-      className="border-b border-surfaceMuted/60 bg-background"
+      className="border-t border-surfaceMuted/60 bg-background py-10 sm:py-14 lg:py-16"
+      aria-labelledby="core-services-heading"
     >
-      <div className="section-wrapper py-10 sm:py-14 lg:py-16">
-        <header className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <div className="section-wrapper">
+        <header className="mb-6 flex flex-col gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent mb-1">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
               Core construction services
             </p>
             <h2
-              id="services-heading"
+              id="core-services-heading"
               className="text-xl font-semibold tracking-tight sm:text-2xl"
             >
-              From leaks and cracks to full refurbishments.
+              The work LDNFIX is built on.
             </h2>
-            <p className="max-w-xl text-sm text-textMuted mt-1.5">
-              Construction-led, multi-trade work handled properly – so you don’t
-              have to juggle separate roofers, plasterers, brickies and
-              decorators.
+            <p className="mt-2 max-w-2xl text-sm text-textMuted">
+              Roofing, plastering, brickwork, refurbs and day-to-day repairs –
+              all scoped by someone who understands how each trade affects the
+              next. You&apos;re not getting five disconnected quotes; you&apos;re
+              getting one joined-up plan.
+            </p>
+          </div>
+
+          <div className="text-xs text-textMuted sm:text-[11px]">
+            <p className="font-semibold text-textPrimary">
+              Typical jobs across North, East & the M25 belt
+            </p>
+            <p>
+              Enfield, Barnet, Haringey, Islington, Hackney, Waltham Forest and
+              beyond – especially where previous work hasn&apos;t quite held up.
             </p>
           </div>
         </header>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => {
-            const href =
-              service.slug.startsWith("#") || service.slug.startsWith("/")
-                ? service.slug
-                : `/${service.slug}`;
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {coreServices.map((service) => {
+            const Wrapper: React.ElementType = service.href ? Link : "div";
+            const wrapperProps = service.href
+              ? {
+                  href: service.href,
+                  "data-event": `core-service-link-${service.id}`,
+                }
+              : {};
 
             return (
-              <article
-                key={service.title}
-                className="group flex flex-col rounded-2xl border border-surfaceMuted bg-surface p-4 shadow-soft transition hover:-translate-y-0.5 hover:border-accent/70"
+              <Wrapper
+                key={service.id}
+                {...wrapperProps}
+                className="group flex h-full flex-col rounded-2xl border border-surfaceMuted bg-surface p-4 text-left shadow-soft transition hover:border-accent/70 hover:shadow-md"
               >
-                <h3 className="mb-1 text-sm font-semibold text-textPrimary">
-                  {service.title}
-                </h3>
-                <p className="mb-2 text-xs font-semibold text-accent">
-                  {service.tagline}
-                </p>
-                <p className="mb-3 flex-1 text-xs text-textMuted">
-                  {service.description}
-                </p>
+                <header className="mb-2">
+                  <h3 className="text-sm font-semibold text-textPrimary">
+                    {service.title}
+                  </h3>
+                  <p className="mt-1 text-xs text-textMuted">
+                    {service.short}
+                  </p>
+                </header>
 
-                <Link
-                  href={href}
-                  className="inline-flex items-center text-xs font-semibold text-accent underline-offset-2 group-hover:underline"
-                  data-event="service-card-click"
-                  data-service={service.title}
-                >
-                  {href === "#contact" ? "Enquire about this" : "View service"}
-                  <span aria-hidden className="ml-1">
+                <ul className="mb-3 flex-1 space-y-1.5 text-[11px] text-textMuted">
+                  {service.points.map((point) => (
+                    <li key={point} className="flex gap-1">
+                      <span className="mt-[3px] h-[3px] w-[3px] rounded-full bg-accent/80" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <span className="mt-auto inline-flex items-center text-[11px] font-semibold text-accent">
+                  {service.href ? "View this service" : "Discuss this work"}
+                  <span className="ml-1 transition group-hover:translate-x-0.5">
                     →
                   </span>
-                </Link>
-              </article>
+                </span>
+              </Wrapper>
             );
           })}
         </div>
