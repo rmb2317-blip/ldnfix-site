@@ -3,8 +3,6 @@ import HeroSection from "@/components/HeroSection";
 import WhyChooseLDNFIX from "@/components/WhyChooseLDNFIX";
 import CoreConstructionServices from "@/components/CoreConstructionServices";
 import FounderExperienceSection from "@/components/FounderExperienceSection";
-import Testimonials from "@/components/Testimonials";
-import BeforeAfterGallery from "@/components/BeforeAfterGallery";
 import WorkShowcase from "@/components/WorkShowcase";
 import HomepageFAQ from "@/components/HomepageFAQ";
 import AreasCovered from "@/components/AreasCovered";
@@ -27,9 +25,6 @@ export default function HomePage() {
         <CoreConstructionServices />
       
         <FounderExperienceSection />
-        <Testimonials />
-        {/* Before/after proof gallery */}
-        <BeforeAfterGallery />
         {/* Extra work examples / UGC-style content */}
         <WorkShowcase />
         {/* FAQs near the bottom of the journey */}
